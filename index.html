@@ -8,31 +8,77 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="inner-container">            
-            <div class="logo">
-                <img src="logo.svg" alt="Digimeister">
+
+    <div class="desktop">
+
+        <nav class="desktop-icons" aria-label="Desktop">
+            <a class="desktop-icon" href="mailto:hello@digimeister.co.jp">
+                <div class="icon-box">
+                    <span class="icon-glyph" aria-hidden="true">✉</span>
+                </div>
+                <span class="icon-label">E-Mail</span>
+            </a>
+            <a class="desktop-icon" href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box">
+                    <span class="icon-glyph icon-glyph--img" aria-hidden="true">
+                        <img src="linkedin-icon.svg" alt="">
+                    </span>
+                </div>
+                <span class="icon-label">LinkedIn</span>
+            </a>
+        </nav>
+
+        <div class="window">
+
+            <div class="title-bar">
+                <span class="title-dot" aria-hidden="true"></span>
+                <span class="title-text">DIGIMEISTER CORP.</span>
+                <div class="title-controls" aria-hidden="true">
+                    <span class="ctrl-btn"></span>
+                    <span class="ctrl-btn"></span>
+                    <span class="ctrl-btn ctrl-btn--close"></span>
+                </div>
             </div>
 
-            <div class="tagline">
-                YOUR CO-DEVELOPER
+            <div class="win-body">
+
+                <div class="logo-wrap">
+                    <img src="logo.svg" alt="Digimeister" class="logo">
+                </div>
+
+                <p class="tagline">【 YOUR CO-DEVELOPER 】</p>
+
+                <div class="info-block" aria-label="Contact information">
+                    <div class="info-row">
+                        <span class="info-key" aria-label="Email">✉</span>
+                        <span class="info-val">hello@digimeister.co.jp</span>
+                        <button class="copy-btn" data-copy="hello@digimeister.co.jp" aria-label="Copy email">⧉</button>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key" aria-label="Phone">☏</span>
+                        <span class="info-val">+81 90 6428 1601</span>
+                        <button class="copy-btn" data-copy="+81 90 6428 1601" aria-label="Copy phone">⧉</button>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-key" aria-label="LinkedIn"><img src="linkedin-icon.svg" alt="LinkedIn"></span>
+                        <a class="info-val" href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="contact-info">
-                <div>hello@digimeister.co.jp</div>
-                <div class="phone">+81 90 6428 1601</div>
-            </div>
-
-            <div class="social-links">
-                <a href="http://www.linkedin.com/in/jxxxxxst" target="_blank" rel="noopener noreferrer">
-                    <img src="linkedin-icon.svg" alt="LinkedIn">
-                </a>
-            </div>         
         </div>
-        
-        <footer>
-            <p>© Digimeister inc.</p>
-        </footer>
     </div>
+
+    <script>
+        document.querySelectorAll('.copy-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+                    btn.textContent = '✓';
+                    setTimeout(function () { btn.textContent = '⧉'; }, 1400);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,150 +1,329 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+/* =============================================
+   DIGIMEISTER — Game UI  ·  1-bit  ·  Blocky
+   ============================================= */
 
-* {
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --border: 2px solid #000000;
+    --font:   'MS Sans Serif', 'Microsoft Sans Serif', Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    background-color: #ffffff;
-    color: #000000;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
+    font-family:         var(--font);
+    font-size:           12px;
+    color:               var(--black);
+    background:          var(--black);
+    cursor:              default;
+    user-select:         none;
+    -webkit-user-select: none;
 }
 
-.container {
-    width: 100%;
-    text-align: center;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+/* Only animation in the UI */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+}
+
+/* =============================================
+   DESKTOP  ·  50% dither
+   ============================================= */
+
+.desktop {
+    width:            100%;
+    height:           100vh;
+    display:          flex;
+    align-items:      center;
+    justify-content:  center;
+    padding:          24px;
+    position:         relative;
+    background-color: #000000;
+    background-image: url("data:image/svg+xml,%3Csvg%20width%3D'2'%20height%3D'2'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Crect%20fill%3D'white'%20x%3D'0'%20y%3D'0'%20width%3D'1'%20height%3D'1'%2F%3E%3Crect%20fill%3D'white'%20x%3D'1'%20y%3D'1'%20width%3D'1'%20height%3D'1'%2F%3E%3C%2Fsvg%3E");
+    background-repeat: repeat;
+    background-size:   2px 2px;
+}
+
+/* =============================================
+   DESKTOP ICONS
+   ============================================= */
+
+.desktop-icons {
+    position:        absolute;
+    top:             16px;
+    left:            16px;
+    display:         flex;
+    flex-direction:  column;
+    gap:             12px;
+}
+
+.desktop-icon {
+    display:         flex;
+    flex-direction:  column;
+    align-items:     center;
+    gap:             5px;
+    text-decoration: none;
+    cursor:          pointer;
+    outline:         none;
+}
+
+.icon-box {
+    width:           50px;
+    height:          50px;
+    background:      var(--white);
+    border:          var(--border);
+    box-shadow:      2px 2px 0 var(--white);
+    display:         flex;
+    align-items:     center;
     justify-content: center;
-    align-items: center;
+    font-size:       22px;
 }
 
-.inner-container {
-    margin-top: auto;
+.desktop-icon:hover .icon-box,
+.desktop-icon:focus .icon-box {
+    background: var(--black);
+    color:      var(--white);
+}
+
+.icon-glyph--img img {
+    width:   22px;
+    height:  22px;
+    display: block;
+}
+
+.desktop-icon:hover .icon-glyph--img img,
+.desktop-icon:focus .icon-glyph--img img {
+    filter: invert(1);
+}
+
+.icon-label {
+    font-family:  var(--font);
+    font-size:    10px;
+    color:        var(--white);
+    text-align:   center;
+    text-shadow:  0 0 6px #000, 1px 1px 0 #000, -1px -1px 0 #000,
+                  1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+/* =============================================
+   WINDOW
+   ============================================= */
+
+.window {
+    background:    var(--white);
+    border:        var(--border);
+    box-shadow:    4px 4px 0 var(--black);
+    width:         500px;
+    max-width:     calc(100vw - 48px);
+    z-index:       100;
+    overflow:      hidden;
+}
+
+/* ---- Title Bar ---- */
+
+.title-bar {
+    background:  var(--black);
+    padding:     10px 14px;
+    display:     flex;
+    align-items: center;
+    gap:         10px;
+}
+
+.title-dot {
+    display:    block;
+    width:      8px;
+    height:     8px;
+    background: var(--white);
+    flex-shrink: 0;
+    animation:  pulse 2.2s ease-in-out infinite;
+}
+
+.title-text {
+    flex:           1;
+    color:          var(--white);
+    font-weight:    bold;
+    font-size:      11px;
+    font-family:    var(--font);
+    letter-spacing: 2px;
+    white-space:    nowrap;
+    overflow:       hidden;
+    text-overflow:  ellipsis;
+    pointer-events: none;
+}
+
+/* Decorative-only window controls */
+.title-controls {
+    display:     flex;
+    gap:         6px;
+    flex-shrink: 0;
+}
+
+.ctrl-btn {
+    display:    block;
+    width:      12px;
+    height:     12px;
+    background: transparent;
+    border:     2px solid var(--white);
+}
+
+.ctrl-btn--close {
+    background: var(--white);
+}
+
+/* ---- Window Body ---- */
+
+.win-body {
+    padding:        24px 22px;
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+    gap:            18px;
+}
+
+.logo-wrap {
+    width:           100%;
+    display:         flex;
+    justify-content: center;
 }
 
 .logo {
-    margin-bottom: 26px;
-}
-
-.logo img {
+    width:     400px;
     max-width: 100%;
-    height: auto;
-    width: 500px;
-    /* width: 50vw; */
-    /* max-width: 800px; */
+    height:    auto;
+    display:   block;
 }
 
 .tagline {
-    font-family: "Orbitron", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: italic;
-    font-size: 20px;
-    letter-spacing: 2px;
+    font-family:    var(--font);
+    font-size:      11px;
+    font-weight:    bold;
+    letter-spacing: 6px;
+    color:          var(--black);
+    text-align:     center;
     text-transform: uppercase;
-    margin-bottom: 50px;
-    font-weight: 300;
 }
 
-.contact-info {
-    font-family: "Saira", sans-serif;
-    margin-bottom: 30px;
+/* ---- Info Block ---- */
+
+.info-block {
+    width:  100%;
+    border: var(--border);
 }
 
-.contact-info a {
-    text-decoration: none;
-    font-size: 16px;
+.info-row {
+    display:       flex;
+    align-items:   center;
+    padding:       9px 14px;
+    gap:           16px;
+    border-bottom: 1px solid var(--black);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-key {
+    width:       24px;
+    flex-shrink: 0;
+    font-size:   15px;
+    line-height: 1;
+    display:     flex;
+    align-items: center;
+    justify-content: center;
+    color:       var(--black);
+}
+
+.info-key img {
+    width:  16px;
+    height: 16px;
     display: block;
-    margin: 15px 0;
-    transition: color 0.3s ease;
 }
 
-.phone {
-    font-family: "Saira", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    margin-top: 10px;
+.info-val {
+    font-family:     var(--font);
+    font-size:       12px;
+    color:           var(--black);
+    text-decoration: none;
+    flex:            1;
+    align-self:      stretch;
+    display:         flex;
+    align-items:     center;
+    gap:             6px;
+    user-select:     text;
+    -webkit-user-select: text;
+    cursor:          text;
 }
 
-.social-links {
-    margin: 10px 0;
+a.info-val {
+    cursor: pointer;
 }
 
-.social-links a {
-    display: inline-block;
-    margin: 0 10px;
+a.info-val {
+    text-decoration: underline;
 }
 
-.social-links img {
-    width: 20px;
-    height: 20px;
+a.info-val:hover {
+    text-decoration: none;
 }
 
-footer {
-    width: 100%;
-    background-color: #000000;
-    color: #ffffff;
-    font-size: 12px;
-    padding: 15px 0;
-    text-align: center;
-    margin-top: auto;
+.copy-btn {
+    flex-shrink:     0;
+    width:           22px;
+    height:          22px;
+    background:      transparent;
+    border:          1px solid var(--black);
+    color:           var(--black);
+    font-size:       12px;
+    font-family:     var(--font);
+    cursor:          pointer;
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    padding:         0;
+    user-select:     none;
+    -webkit-user-select: none;
 }
 
-/* レスポンシブデザイン */
-@media (max-width: 768px) {
-    .logo img {
-        width: 300px;
+.copy-btn:hover  { background: var(--black); color: var(--white); }
+.copy-btn:active { opacity: 0.7; }
+
+
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 560px) {
+    .desktop {
+        align-items:     flex-start;
+        justify-content: flex-start;
+        padding:         0;
+        height:          100vh;
     }
 
-    .tagline {
-        font-size: 14px;
-        letter-spacing: 1.5px;
+    .desktop-icons { display: none; }
+
+    .window {
+        width:      100%;
+        max-width:  100%;
+        border:     none;
+        box-shadow: none;
+        min-height: 100vh;
     }
 
-    .contact-info {
-        font-size: 14px;
-    }
+    .win-body    { padding: 18px 14px; gap: 14px; }
+    .logo        { width: 260px; }
+    .tagline     { font-size: 9px; letter-spacing: 4px; }
 
-    .phone {
-        font-size: 12px;
-    }
 
-    footer {
-        margin-top: auto;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        margin-bottom: 20px;
-    }
-
-    .logo img {
-        width: 250px;
-    }
-
-    .tagline {
-        font-size: 11px;
-        margin-bottom: 40px;
-    }
-
-    .contact-info {
-        font-size: 11px;
-    }
-
-    .phone {
-        font-size: 10px;
-    }
-
-    footer {
-        margin-top: auto;
-    }
 }
