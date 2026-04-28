@@ -564,7 +564,8 @@ a.info-val:hover {
     /* Title-bar grows so tabs are tappable on touch screens */
     .title-bar      { height: 44px; }
     .title-dot      { margin: 0 10px; }
-    .title-controls { margin-right: 10px; gap: 4px; }
+    /* margin-left keeps last tab off the controls when the strip fills */
+    .title-controls { margin-right: 10px; margin-left: 8px; gap: 4px; }
 
     /* Tabs: bigger tap targets, scroll horizontally if they overflow */
     .tab-strip   { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; }
@@ -575,10 +576,15 @@ a.info-val:hover {
         height: 500px;
     }
 
-    /* Logo scales to panel width — drop the desktop fixed cap so it isn't tiny */
+    /* Top-align HOME so the logo sits near the top instead of floating in
+       vertical-center whitespace inside the 500px panel */
+    #content-home.is-visible {
+        justify-content: flex-start;
+    }
+
     #content-home .logo-wrap {
-        margin-top:    24px;
-        margin-bottom: 32px;
+        margin-top:    12px;
+        margin-bottom: 28px;
     }
 
     .win-body { padding: 18px 14px; gap: 14px; }
