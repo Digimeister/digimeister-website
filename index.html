@@ -142,8 +142,14 @@
             contents.forEach(function (c) { c.classList.remove('is-visible'); });
             tab.classList.add('is-active');
             var content = document.getElementById(tab.dataset.panel);
-            if (content) content.classList.add('is-visible');
+            if (content) {
+                content.classList.add('is-visible');
+                content.scrollTop = 0;
+            }
         }
+
+        // Reset every panel's scroll on page open so reloads land at the top
+        contents.forEach(function (c) { c.scrollTop = 0; });
 
         tabs.forEach(function (tab) {
             tab.addEventListener('click', function () {
