@@ -13,6 +13,7 @@
     --white:        #ffffff;
     --border:       2px solid #000000;
     --font:         'MS Sans Serif', 'Microsoft Sans Serif', Arial, sans-serif;
+    --font-crt:     'JetBrains Mono', 'Courier New', monospace;
 }
 
 html, body {
@@ -96,10 +97,12 @@ body {
 }
 
 .icon-glyph--img img {
-    width:   22px;
-    height:  22px;
-    display: block;
+    width:           36px;
+    height:          36px;
+    display:         block;
+    image-rendering: pixelated;
 }
+
 
 .desktop-icon:hover .icon-glyph--img img,
 .desktop-icon:focus .icon-glyph--img img {
@@ -207,7 +210,7 @@ body {
 }
 
 .logo {
-    width:     400px;
+    width:     500px;
     max-width: 100%;
     height:    auto;
     display:   block;
@@ -240,6 +243,34 @@ body {
 
 .info-row:last-child {
     border-bottom: none;
+}
+
+/* =============================================
+   HOME TAB — typography + vertical rhythm
+   ============================================= */
+
+#content-home .spec-val,
+#content-home .info-val {
+    font-family:    var(--font-crt);
+    font-size:      13px;
+    font-weight:    500;
+    letter-spacing: 0;
+    line-height:    1.2;
+    margin-left:    4px;     /* nudge text right of the icon column */
+}
+
+/* Replace .win-body's uniform gap with explicit per-section margins */
+#content-home {
+    gap: 0;
+}
+
+#content-home .logo-wrap {
+    margin-top:    29px;
+    margin-bottom: 45px;
+}
+
+#content-home .info-block + .info-block {
+    margin-top: 12px;        /* tighter rhythm: info1 → info2 */
 }
 
 /* ---- Spec rows (studio profile data) ---- */
@@ -277,7 +308,7 @@ body {
 
 
 .info-key {
-    width:       24px;
+    width:       40px;
     flex-shrink: 0;
     font-size:   15px;
     line-height: 1;
@@ -287,10 +318,18 @@ body {
     color:       var(--black);
 }
 
+/* Pixel-art icons displayed at 2× native (18→36) so each source pixel maps
+   to a clean 2×2 block — crisp on any DPI, no interpolation artefacts */
 .info-key img {
-    width:  16px;
-    height: 16px;
-    display: block;
+    width:           36px;
+    height:          36px;
+    display:         block;
+    image-rendering: pixelated;
+}
+
+/* SVG icons (LinkedIn) — render smoothly, same display size */
+.info-key img[src$=".svg"] {
+    image-rendering: auto;
 }
 
 .info-val {
@@ -358,7 +397,7 @@ a.info-val:hover {
 .panel-stage {
     top:        50%;
     left:       50%;
-    width:      540px;
+    width:      660px;
     max-width:  calc(100vw - 48px);
     transform:  translate(-50%, -50%);
     z-index:    110;
@@ -437,7 +476,7 @@ a.info-val:hover {
     position:    relative;
     z-index:     0;
     border-top:  2px solid var(--black);  /* hard separator so active tab can't bleed down */
-    height:      420px;                    /* fixed so the window stays one size across all tabs */
+    height:      500px;                    /* fixed so the window stays one size across all tabs */
 }
 
 .panel-area .win-body {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Icon Reference</title>
+<style>
+  body { background: #fff; font-family: monospace; font-size: 10px; padding: 16px; }
+  h1 { font-size: 14px; margin-bottom: 12px; }
+  .grid { display: flex; flex-direction: column; gap: 4px; }
+  .row { display: flex; gap: 4px; align-items: center; }
+  .row-label { width: 28px; color: #888; flex-shrink: 0; }
+  .cell { width: 48px; text-align: center; }
+  .cell img { width: 36px; height: 36px; image-rendering: pixelated; display: block; margin: 0 auto 2px; border: 1px solid #eee; }
+  .cell .coord { color: #aaa; font-size: 9px; }
+  .col-headers { display: flex; gap: 4px; margin-left: 32px; margin-bottom: 4px; }
+  .col-header { width: 48px; text-align: center; color: #888; }
+</style>
+</head>
+<body>
+<h1>Icon Reference — icon_ROW_COL.png · 18×18px · displayed at 2× (36px)</h1>
+<div class="col-headers">
+  <div class="col-header">00</div><div class="col-header">01</div><div class="col-header">02</div>
+  <div class="col-header">03</div><div class="col-header">04</div><div class="col-header">05</div>
+  <div class="col-header">06</div><div class="col-header">07</div><div class="col-header">08</div>
+  <div class="col-header">09</div><div class="col-header">10</div><div class="col-header">11</div>
+  <div class="col-header">12</div><div class="col-header">13</div><div class="col-header">14</div>
+  <div class="col-header">15</div><div class="col-header">16</div><div class="col-header">17</div>
+  <div class="col-header">18</div><div class="col-header">19</div><div class="col-header">20</div>
+</div>
+<div class="grid" id="g"></div>
+<script>
+const rows = 21, cols = 21;
+const g = document.getElementById('g');
+for (let r = 0; r < rows; r++) {
+  const row = document.createElement('div');
+  row.className = 'row';
+  const lbl = document.createElement('div');
+  lbl.className = 'row-label';
+  lbl.textContent = String(r).padStart(2,'0');
+  row.appendChild(lbl);
+  for (let c = 0; c < cols; c++) {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    const rr = String(r).padStart(2,'0');
+    const cc = String(c).padStart(2,'0');
+    cell.innerHTML = `<img src="icons/icon_${rr}_${cc}.png"><div class="coord">${rr},${cc}</div>`;
+    row.appendChild(cell);
+  }
+  g.appendChild(row);
+}
+</script>
+</body>
+</html>
