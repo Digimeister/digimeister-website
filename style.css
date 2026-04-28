@@ -493,8 +493,10 @@ a.info-val:hover {
 
 .panel-area .win-body.is-visible {
     display:         flex;
-    justify-content: center;   /* vertical centering inside the 480px panel */
-    align-items:     center;   /* horizontal centering of children */
+    /* `safe` keeps content top-aligned (and fully scrollable) when it
+       overflows — without it, centered content gets clipped at the top */
+    justify-content: safe center;
+    align-items:     center;
 }
 
 /* =============================================
