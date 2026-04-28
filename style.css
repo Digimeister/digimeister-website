@@ -541,11 +541,11 @@ a.info-val:hover {
    ============================================= */
 
 @media (max-width: 560px) {
-    /* Desktop dither stays visible around a real, framed window */
+    /* Anchor the window to the top with breathing room above */
     .desktop {
-        align-items:     center;
+        align-items:     flex-start;
         justify-content: center;
-        padding:         16px;
+        padding:         24px 16px;
         height:          100vh;
     }
 
@@ -564,8 +564,8 @@ a.info-val:hover {
     /* Title-bar grows so tabs are tappable on touch screens */
     .title-bar      { height: 44px; }
     .title-dot      { margin: 0 10px; }
-    /* margin-left keeps last tab off the controls when the strip fills */
-    .title-controls { margin-right: 10px; margin-left: 8px; gap: 4px; }
+    /* Hide decorative window controls on mobile so tabs get the full strip */
+    .title-controls { display: none; }
 
     /* Tabs: bigger tap targets, scroll horizontally if they overflow */
     .tab-strip   { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; }
