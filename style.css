@@ -268,6 +268,8 @@ body {
     gap: 0;
 }
 
+/* Manual composition nudge inside the centered 500px panel — not compensating
+   for SVG padding (logo.svg viewBox is already tight to the letterforms). */
 #content-home .logo-wrap {
     margin-top:    29px;
     margin-bottom: 45px;
@@ -539,16 +541,17 @@ a.info-val:hover {
    ============================================= */
 
 @media (max-width: 560px) {
+    /* Desktop dither stays visible around a real, framed window */
     .desktop {
-        align-items:     flex-start;
-        justify-content: flex-start;
-        padding:         0;
+        align-items:     center;
+        justify-content: center;
+        padding:         16px;
         height:          100vh;
     }
 
     .desktop-icons { display: none; }
 
-    /* Stage fills the screen */
+    /* Stage stays a real window: keep border + box-shadow from .window. */
     .panel-stage {
         position:   relative;
         top:        auto;
@@ -556,26 +559,28 @@ a.info-val:hover {
         transform:  none !important;
         width:      100%;
         max-width:  100%;
-        min-height: 100vh;
-        border:     none;
-        box-shadow: none;
     }
 
-    .tab-strip {
-        padding: 4px 0 0 8px;
-        flex-wrap: nowrap;
-        overflow-x: auto;
+    /* Title-bar grows so tabs are tappable on touch screens */
+    .title-bar      { height: 44px; }
+    .title-dot      { margin: 0 10px; }
+    .title-controls { margin-right: 10px; gap: 4px; }
+
+    /* Tabs: bigger tap targets, scroll horizontally if they overflow */
+    .tab-strip   { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; }
+    .tab         { padding: 0 14px; font-size: 11px; letter-spacing: 1.5px; }
+
+    /* Window stays a fixed, sensible size — dither breathes around it */
+    .panel-area {
+        height: 500px;
     }
 
-    .tab          { padding: 6px 10px; font-size: 9px; }
-    .tab.is-active { padding: 8px 12px; }
-
-    .panel-area .win-body {
-        max-height: calc(100vh - 110px);
-        overflow-y: auto;
+    /* Logo scales to panel width — drop the desktop fixed cap so it isn't tiny */
+    #content-home .logo-wrap {
+        margin-top:    24px;
+        margin-bottom: 32px;
     }
 
-    .win-body    { padding: 18px 14px; gap: 14px; }
-    .logo        { width: 260px; }
-    .tagline     { font-size: 9px; letter-spacing: 4px; }
+    .win-body { padding: 18px 14px; gap: 14px; }
+    .tagline  { font-size: 9px; letter-spacing: 4px; }
 }
