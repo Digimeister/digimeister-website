@@ -9,10 +9,10 @@
 }
 
 :root {
-    --black: #000000;
-    --white: #ffffff;
-    --border: 2px solid #000000;
-    --font:   'MS Sans Serif', 'Microsoft Sans Serif', Arial, sans-serif;
+    --black:        #000000;
+    --white:        #ffffff;
+    --border:       2px solid #000000;
+    --font:         'MS Sans Serif', 'Microsoft Sans Serif', Arial, sans-serif;
 }
 
 html, body {
@@ -127,16 +127,20 @@ body {
     max-width:     calc(100vw - 48px);
     z-index:       100;
     overflow:      hidden;
+    position:      absolute;
+    transition:    none;
 }
 
-/* ---- Title Bar ---- */
+/* ---- Title Bar (now also the tab-strip container) ---- */
 
 .title-bar {
     background:  var(--black);
-    padding:     10px 14px;
+    padding:     0;
     display:     flex;
-    align-items: center;
-    gap:         10px;
+    align-items: stretch;          /* tabs fill full title-bar height */
+    height:      36px;             /* fixed so every tab is identical height */
+    border-bottom: 2px solid var(--black);
+    overflow:    hidden;
 }
 
 .title-dot {
@@ -145,9 +149,12 @@ body {
     height:     8px;
     background: var(--white);
     flex-shrink: 0;
+    align-self: center;            /* keep dot vertically centered */
+    margin:     0 14px;
     animation:  pulse 2.2s ease-in-out infinite;
 }
 
+/* Standalone title text (kept for any panel that opts to use it) */
 .title-text {
     flex:           1;
     color:          var(--white);
@@ -159,6 +166,7 @@ body {
     overflow:       hidden;
     text-overflow:  ellipsis;
     pointer-events: none;
+    align-self:     center;
 }
 
 /* Decorative-only window controls */
@@ -166,6 +174,8 @@ body {
     display:     flex;
     gap:         6px;
     flex-shrink: 0;
+    align-self:  center;
+    margin-right: 14px;
 }
 
 .ctrl-btn {
@@ -224,13 +234,47 @@ body {
     display:       flex;
     align-items:   center;
     padding:       9px 14px;
-    gap:           16px;
+    gap:           10px;
     border-bottom: 1px solid var(--black);
 }
 
 .info-row:last-child {
     border-bottom: none;
 }
+
+/* ---- Spec rows (studio profile data) ---- */
+
+.spec-key {
+    width:          100px;
+    flex-shrink:    0;
+    font-family:    var(--font);
+    font-weight:    bold;
+    font-size:      10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color:          var(--black);
+}
+
+.spec-val {
+    flex:           1;
+    font-family:    var(--font);
+    font-size:      11px;
+    color:          var(--black);
+    display:        flex;
+    align-items:    center;
+    letter-spacing: 0.5px;
+}
+
+.status-dot {
+    display:      inline-block;
+    width:        8px;
+    height:       8px;
+    background:   var(--black);
+    margin-right: 8px;
+    flex-shrink:  0;
+    animation:    pulse 2.2s ease-in-out infinite;
+}
+
 
 .info-key {
     width:       24px;
@@ -254,11 +298,9 @@ body {
     font-size:       12px;
     color:           var(--black);
     text-decoration: none;
-    flex:            1;
     align-self:      stretch;
     display:         flex;
     align-items:     center;
-    gap:             6px;
     user-select:     text;
     -webkit-user-select: text;
     cursor:          text;
@@ -294,10 +336,158 @@ a.info-val:hover {
     -webkit-user-select: none;
 }
 
+.copy-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.info-row:hover .copy-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .copy-btn:hover  { background: var(--black); color: var(--white); }
 .copy-btn:active { opacity: 0.7; }
 
 
+
+/* =============================================
+   PANEL STAGE — single tabbed window, centered
+   ============================================= */
+
+.panel-stage {
+    top:        50%;
+    left:       50%;
+    width:      540px;
+    max-width:  calc(100vw - 48px);
+    transform:  translate(-50%, -50%);
+    z-index:    110;
+}
+
+/* =============================================
+   TAB STRIP — embedded inside the black title bar
+   ============================================= */
+
+/*
+  Tabs are segments of the title bar itself. Inactive tabs sit on the black bg
+  with white text. The active tab inverts to white-on-black AND its white fill
+  extends through to the panel below — visually fusing the tab and content.
+*/
+.tab-strip {
+    display:     flex;
+    align-items: stretch;
+    flex:        1;
+    min-width:   0;
+}
+
+.tab {
+    background:     transparent;
+    color:          var(--white);
+    border:         none;
+    padding:        0 16px;
+    display:        flex;
+    align-items:    center;
+    font-family:    var(--font);
+    font-size:      10px;
+    font-weight:    bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    line-height:    1;
+    cursor:         pointer;
+    white-space:    nowrap;
+    position:       relative;
+}
+
+/* Subtle 1px white separators between inactive tabs */
+.tab + .tab::before {
+    content:    "";
+    position:   absolute;
+    left:       0;
+    top:        25%;
+    bottom:     25%;
+    width:      1px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.tab:hover:not(.is-active) {
+    background: #1f1f1f;
+}
+
+/* Active tab: full inversion. White fill spans the full title-bar height,
+   so its bottom edge sits flush against the white panel below — they merge. */
+.tab.is-active {
+    background: var(--white);
+    color:      var(--black);
+    cursor:     default;
+    outline:    1px dotted var(--black);
+    outline-offset: -4px;
+}
+
+/* Hide the separator on either side of the active tab (would cut into the inversion) */
+.tab.is-active::before,
+.tab.is-active + .tab::before {
+    display: none;
+}
+
+/* =============================================
+   PANEL CONTENT AREA
+   ============================================= */
+
+.panel-area {
+    position:    relative;
+    z-index:     0;
+    border-top:  2px solid var(--black);  /* hard separator so active tab can't bleed down */
+    height:      420px;                    /* fixed so the window stays one size across all tabs */
+}
+
+.panel-area .win-body {
+    display:    none;
+    height:     100%;
+    overflow-y: auto;
+}
+
+.panel-area .win-body.is-visible {
+    display:         flex;
+    justify-content: center;   /* vertical centering inside the 480px panel */
+    align-items:     center;   /* horizontal centering of children */
+}
+
+/* =============================================
+   PANEL CONTENT
+   ============================================= */
+
+.about-body {
+    align-items: stretch;
+}
+
+.about-text {
+    width:          100%;
+    display:        flex;
+    flex-direction: column;
+    gap:            12px;
+    font-family:    var(--font);
+    font-size:      12px;
+    line-height:    1.65;
+    color:          var(--black);
+    user-select:    text;
+    -webkit-user-select: text;
+    cursor:         text;
+}
+
+.about-label {
+    font-weight:    bold;
+    font-size:      10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom:  1px solid var(--black);
+    padding-bottom: 3px;
+    margin-top:     8px;
+    cursor:         default;
+}
+
+.about-label:first-child {
+    margin-top: 0;
+}
 
 /* =============================================
    RESPONSIVE
@@ -313,17 +503,34 @@ a.info-val:hover {
 
     .desktop-icons { display: none; }
 
-    .window {
+    /* Stage fills the screen */
+    .panel-stage {
+        position:   relative;
+        top:        auto;
+        left:       auto;
+        transform:  none !important;
         width:      100%;
         max-width:  100%;
+        min-height: 100vh;
         border:     none;
         box-shadow: none;
-        min-height: 100vh;
+    }
+
+    .tab-strip {
+        padding: 4px 0 0 8px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    .tab          { padding: 6px 10px; font-size: 9px; }
+    .tab.is-active { padding: 8px 12px; }
+
+    .panel-area .win-body {
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
     }
 
     .win-body    { padding: 18px 14px; gap: 14px; }
     .logo        { width: 260px; }
     .tagline     { font-size: 9px; letter-spacing: 4px; }
-
-
 }

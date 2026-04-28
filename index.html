@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div class="desktop">
+    <div class="desktop" id="desktop">
 
         <nav class="desktop-icons" aria-label="Desktop">
             <a class="desktop-icon" href="mailto:hello@digimeister.co.jp">
@@ -28,11 +28,18 @@
             </a>
         </nav>
 
-        <div class="window">
+        <!-- ONE central tabbed window. Tabs sit above the content area and swap which
+             section is shown. Active tab visually merges with the panel below. -->
+        <div class="window panel-stage" id="panel-stage">
 
             <div class="title-bar">
                 <span class="title-dot" aria-hidden="true"></span>
-                <span class="title-text">DIGIMEISTER CORP.</span>
+                <div class="tab-strip" role="tablist">
+                    <div class="tab is-active" role="tab" data-panel="content-home">HOME</div>
+                    <div class="tab" role="tab" data-panel="content-about">ABOUT</div>
+                    <div class="tab" role="tab" data-panel="content-games">GAMES</div>
+                    <div class="tab" role="tab" data-panel="content-team">TEAM</div>
+                </div>
                 <div class="title-controls" aria-hidden="true">
                     <span class="ctrl-btn"></span>
                     <span class="ctrl-btn"></span>
@@ -40,39 +47,104 @@
                 </div>
             </div>
 
-            <div class="win-body">
+            <div class="panel-area">
 
-                <div class="logo-wrap">
-                    <img src="logo.svg" alt="Digimeister" class="logo">
+                <div class="win-body is-visible" id="content-home">
+                    <div class="logo-wrap">
+                        <img src="logo.svg" alt="Digimeister" class="logo">
+                    </div>
+                    <p class="tagline">【 YOUR CO-DEVELOPER 】</p>
+
+                    <div class="info-block" aria-label="Studio profile">
+                        <div class="info-row info-row--spec">
+                            <span class="info-key" aria-label="Focus">▶</span>
+                            <span class="spec-val">GAMES · APPLICATIONS · CO-DEVELOPMENT</span>
+                        </div>
+                        <div class="info-row info-row--spec">
+                            <span class="info-key" aria-label="Base location">⌂</span>
+                            <span class="spec-val">FUKUOKA, JAPAN</span>
+                        </div>
+                    </div>
+
+                    <div class="info-block" aria-label="Contact information">
+                        <div class="info-row">
+                            <span class="info-key" aria-label="Email">✉</span>
+                            <a class="info-val" href="mailto:hello@digimeister.co.jp">hello@digimeister.co.jp</a>
+                            <button class="copy-btn" data-copy="hello@digimeister.co.jp" aria-label="Copy email">⧉</button>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-key" aria-label="Phone">☏</span>
+                            <a class="info-val" href="tel:+819064281601">+81 90 6428 1601</a>
+                            <button class="copy-btn" data-copy="+81 90 6428 1601" aria-label="Copy phone">⧉</button>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-key" aria-label="LinkedIn"><img src="linkedin-icon.svg" alt="LinkedIn"></span>
+                            <a class="info-val" href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        </div>
+                    </div>
                 </div>
 
-                <p class="tagline">【 YOUR CO-DEVELOPER 】</p>
+                <div class="win-body" id="content-about">
+                    <div class="about-text">
+                        <p class="about-label">▸ ABOUT DIGIMEISTER</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p class="about-label">▸ WHAT WE DO</p>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p class="about-label">▸ OUR MISSION</p>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
+                    </div>
+                </div>
 
-                <div class="info-block" aria-label="Contact information">
-                    <div class="info-row">
-                        <span class="info-key" aria-label="Email">✉</span>
-                        <span class="info-val">hello@digimeister.co.jp</span>
-                        <button class="copy-btn" data-copy="hello@digimeister.co.jp" aria-label="Copy email">⧉</button>
+                <div class="win-body" id="content-games">
+                    <div class="about-text">
+                        <p class="about-label">▸ TITLES IN DEVELOPMENT</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum vehicula nibh, sit amet vehicula sem fringilla in. Aliquam erat volutpat.</p>
+                        <p class="about-label">▸ RELEASED</p>
+                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae ultricies eget.</p>
+                        <p class="about-label">▸ PLATFORMS</p>
+                        <p>Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam in scelerisque sem at dolor.</p>
                     </div>
-                    <div class="info-row">
-                        <span class="info-key" aria-label="Phone">☏</span>
-                        <span class="info-val">+81 90 6428 1601</span>
-                        <button class="copy-btn" data-copy="+81 90 6428 1601" aria-label="Copy phone">⧉</button>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-key" aria-label="LinkedIn"><img src="linkedin-icon.svg" alt="LinkedIn"></span>
-                        <a class="info-val" href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+
+                <div class="win-body" id="content-team">
+                    <div class="about-text">
+                        <p class="about-label">▸ FOUNDERS</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies.</p>
+                        <p class="about-label">▸ COLLABORATORS</p>
+                        <p>Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+                        <p class="about-label">▸ JOIN US</p>
+                        <p>Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
                     </div>
                 </div>
 
             </div>
 
         </div>
+
     </div>
 
     <script>
+        var tabs     = document.querySelectorAll('.tab');
+        var contents = document.querySelectorAll('.panel-area .win-body');
+
+        function activateTab(tab) {
+            tabs.forEach(function (t)     { t.classList.remove('is-active'); });
+            contents.forEach(function (c) { c.classList.remove('is-visible'); });
+            tab.classList.add('is-active');
+            var content = document.getElementById(tab.dataset.panel);
+            if (content) content.classList.add('is-visible');
+        }
+
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                if (tab.classList.contains('is-active')) return;
+                activateTab(tab);
+            });
+        });
+
         document.querySelectorAll('.copy-btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
                 navigator.clipboard.writeText(btn.dataset.copy).then(function () {
                     btn.textContent = '✓';
                     setTimeout(function () { btn.textContent = '⧉'; }, 1400);
