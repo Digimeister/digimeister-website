@@ -14,7 +14,7 @@
     --border:       2px solid #000000;
     --font:         'MS Sans Serif', 'Microsoft Sans Serif', Arial, sans-serif;
     --font-crt:     'JetBrains Mono', 'Courier New', monospace;
-    --font-body:    'DM Sans', 'Segoe UI', system-ui, sans-serif;
+    --font-body:    'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
 }
 
 html, body {
@@ -30,9 +30,9 @@ body {
     cursor:              default;
     user-select:         none;
     -webkit-user-select: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering:      optimizeLegibility;
+    /* No -webkit-font-smoothing override — let Windows ClearType render
+       body text with subpixel antialiasing (using `antialiased` here
+       disables ClearType and makes small body text look thin/jaggy). */
 }
 
 /* Only animation in the UI */
@@ -511,7 +511,7 @@ a.info-val:hover {
     flex-direction: column;
     gap:            12px;
     font-family:    var(--font-body);
-    font-size:      14px;
+    font-size:      15px;
     line-height:    1.6;
     color:          var(--black);
     user-select:    text;
