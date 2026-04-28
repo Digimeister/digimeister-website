@@ -590,3 +590,32 @@ a.info-val:hover {
     .win-body { padding: 18px 14px; gap: 14px; }
     .tagline  { font-size: 9px; letter-spacing: 4px; }
 }
+
+/* Short viewports — phone landscape, etc. Width may be > 560px so the
+   width-based mobile rules don't fire, but the 500px panel + centered
+   window won't fit. Cap the panel height and anchor to the top so the
+   title bar (and tabs) stays on-screen. */
+@media (max-height: 560px) {
+    .desktop {
+        align-items: flex-start;
+        padding:     16px;
+    }
+
+    .desktop-icons { display: none; }
+
+    .panel-stage {
+        position:  relative;
+        top:       auto;
+        left:      auto;
+        transform: none !important;
+        width:     100%;
+        max-width: 720px;
+    }
+
+    .title-controls { display: none; }
+
+    .panel-area {
+        height:     calc(100vh - 100px);
+        min-height: 220px;
+    }
+}
