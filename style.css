@@ -540,6 +540,18 @@ a.info-val:hover {
     margin-top: 0;
 }
 
+.about-text a {
+    color:            var(--black);
+    text-decoration:  underline;
+    text-underline-offset: 2px;
+}
+
+.about-text a:hover {
+    background: var(--black);
+    color:      var(--white);
+    text-decoration: none;
+}
+
 /* =============================================
    RESPONSIVE
    ============================================= */
