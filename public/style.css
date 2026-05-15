@@ -30,9 +30,8 @@ body {
     cursor:              default;
     user-select:         none;
     -webkit-user-select: none;
-    /* No -webkit-font-smoothing override — let Windows ClearType render
-       body text with subpixel antialiasing (using `antialiased` here
-       disables ClearType and makes small body text look thin/jaggy). */
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Only animation in the UI */
