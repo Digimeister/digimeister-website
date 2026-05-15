@@ -118,8 +118,11 @@ body {
     font-size:    11px;
     color:        var(--white);
     text-align:   center;
-    text-shadow:  1px 1px 0 #000, -1px -1px 0 #000,
-                  1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+.desktop-icon:hover .icon-label,
+.desktop-icon:focus .icon-label {
+    color: var(--black);
 }
 
 /* =============================================
