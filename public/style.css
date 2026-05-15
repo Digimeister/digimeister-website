@@ -118,6 +118,7 @@ body {
     font-size:    11px;
     color:        var(--white);
     text-align:   center;
+    text-transform: uppercase;
     text-shadow:  1px 1px 0 #000, -1px -1px 0 #000,
                   1px -1px 0 #000, -1px 1px 0 #000;
 }
