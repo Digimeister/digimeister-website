@@ -43,7 +43,7 @@ for (let r = 0; r < rows; r++) {
     cell.className = 'cell';
     const rr = String(r).padStart(2,'0');
     const cc = String(c).padStart(2,'0');
-    cell.innerHTML = `<img src="icons/icon_${rr}_${cc}.png"><div class="coord">${rr},${cc}</div>`;
+    cell.innerHTML = `<img src="public/icons/icon_${rr}_${cc}.png"><div class="coord">${rr},${cc}</div>`;
     row.appendChild(cell);
   }
   g.appendChild(row);
