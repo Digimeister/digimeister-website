@@ -114,8 +114,8 @@ body {
 }
 
 .icon-label {
-    font-family:  var(--font);
-    font-size:    10px;
+    font-family:  var(--font-crt);
+    font-size:    11px;
     color:        var(--white);
     text-align:   center;
     text-shadow:  0 0 6px #000, 1px 1px 0 #000, -1px -1px 0 #000,
