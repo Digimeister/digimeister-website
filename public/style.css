@@ -1,0 +1,637 @@
+/* =============================================
+   DIGIMEISTER — Game UI  ·  1-bit  ·  Blocky
+   ============================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black:        #000000;
+    --white:        #ffffff;
+    --border:       2px solid #000000;
+    --font:         'MS Sans Serif', 'Microsoft Sans Serif', Arial, sans-serif;
+    --font-crt:     'JetBrains Mono', 'Courier New', monospace;
+    --font-body:    'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family:         var(--font);
+    font-size:           12px;
+    color:               var(--black);
+    background:          var(--black);
+    cursor:              default;
+    user-select:         none;
+    -webkit-user-select: none;
+    /* No -webkit-font-smoothing override — let Windows ClearType render
+       body text with subpixel antialiasing (using `antialiased` here
+       disables ClearType and makes small body text look thin/jaggy). */
+}
+
+/* Only animation in the UI */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+}
+
+/* =============================================
+   DESKTOP  ·  50% dither
+   ============================================= */
+
+.desktop {
+    width:            100%;
+    height:           100vh;
+    display:          flex;
+    align-items:      center;
+    justify-content:  center;
+    padding:          24px;
+    position:         relative;
+    background-color: #000000;
+    background-image: url("data:image/svg+xml,%3Csvg%20width%3D'2'%20height%3D'2'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Crect%20fill%3D'white'%20x%3D'0'%20y%3D'0'%20width%3D'1'%20height%3D'1'%2F%3E%3Crect%20fill%3D'white'%20x%3D'1'%20y%3D'1'%20width%3D'1'%20height%3D'1'%2F%3E%3C%2Fsvg%3E");
+    background-repeat: repeat;
+    background-size:   2px 2px;
+}
+
+/* =============================================
+   DESKTOP ICONS
+   ============================================= */
+
+.desktop-icons {
+    position:        absolute;
+    top:             16px;
+    left:            16px;
+    display:         flex;
+    flex-direction:  column;
+    gap:             12px;
+}
+
+.desktop-icon {
+    display:         flex;
+    flex-direction:  column;
+    align-items:     center;
+    gap:             5px;
+    text-decoration: none;
+    cursor:          pointer;
+    outline:         none;
+}
+
+.icon-box {
+    width:           50px;
+    height:          50px;
+    background:      var(--white);
+    border:          var(--border);
+    box-shadow:      2px 2px 0 var(--white);
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    font-size:       22px;
+}
+
+.desktop-icon:hover .icon-box,
+.desktop-icon:focus .icon-box {
+    background: var(--black);
+    color:      var(--white);
+}
+
+.icon-glyph--img img {
+    width:           36px;
+    height:          36px;
+    display:         block;
+    image-rendering: pixelated;
+}
+
+
+.desktop-icon:hover .icon-glyph--img img,
+.desktop-icon:focus .icon-glyph--img img {
+    filter: invert(1);
+}
+
+.icon-label {
+    font-family:  var(--font);
+    font-size:    10px;
+    color:        var(--white);
+    text-align:   center;
+    text-shadow:  0 0 6px #000, 1px 1px 0 #000, -1px -1px 0 #000,
+                  1px -1px 0 #000, -1px 1px 0 #000;
+}
+
+/* =============================================
+   WINDOW
+   ============================================= */
+
+.window {
+    background:    var(--white);
+    border:        var(--border);
+    box-shadow:    4px 4px 0 var(--black);
+    width:         500px;
+    max-width:     calc(100vw - 48px);
+    z-index:       100;
+    overflow:      hidden;
+    position:      absolute;
+    transition:    none;
+}
+
+/* ---- Title Bar (now also the tab-strip container) ---- */
+
+.title-bar {
+    background:  var(--black);
+    padding:     0;
+    display:     flex;
+    align-items: stretch;          /* tabs fill full title-bar height */
+    height:      36px;             /* fixed so every tab is identical height */
+    border-bottom: 2px solid var(--black);
+    overflow:    hidden;
+}
+
+.title-dot {
+    display:    block;
+    width:      8px;
+    height:     8px;
+    background: var(--white);
+    flex-shrink: 0;
+    align-self: center;            /* keep dot vertically centered */
+    margin:     0 14px;
+    animation:  pulse 2.2s ease-in-out infinite;
+}
+
+/* Standalone title text (kept for any panel that opts to use it) */
+.title-text {
+    flex:           1;
+    color:          var(--white);
+    font-weight:    bold;
+    font-size:      11px;
+    font-family:    var(--font);
+    letter-spacing: 2px;
+    white-space:    nowrap;
+    overflow:       hidden;
+    text-overflow:  ellipsis;
+    pointer-events: none;
+    align-self:     center;
+}
+
+/* Decorative-only window controls */
+.title-controls {
+    display:     flex;
+    gap:         6px;
+    flex-shrink: 0;
+    align-self:  center;
+    margin-right: 14px;
+}
+
+.ctrl-btn {
+    display:    block;
+    width:      12px;
+    height:     12px;
+    background: transparent;
+    border:     2px solid var(--white);
+}
+
+.ctrl-btn--close {
+    background: var(--white);
+}
+
+/* ---- Window Body ---- */
+
+.win-body {
+    padding:        24px 22px;
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+    gap:            18px;
+}
+
+.logo-wrap {
+    width:           100%;
+    display:         flex;
+    justify-content: center;
+}
+
+.logo {
+    width:     500px;
+    max-width: 100%;
+    height:    auto;
+    display:   block;
+}
+
+.tagline {
+    font-family:    var(--font);
+    font-size:      11px;
+    font-weight:    bold;
+    letter-spacing: 6px;
+    color:          var(--black);
+    text-align:     center;
+    text-transform: uppercase;
+}
+
+/* ---- Info Block ---- */
+
+.info-block {
+    width:  100%;
+    border: var(--border);
+}
+
+.info-row {
+    display:       flex;
+    align-items:   center;
+    padding:       9px 14px;
+    gap:           10px;
+    border-bottom: 1px solid var(--black);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+/* =============================================
+   HOME TAB — typography + vertical rhythm
+   ============================================= */
+
+#content-home .spec-val,
+#content-home .info-val {
+    font-family:    var(--font-crt);
+    font-size:      13px;
+    font-weight:    500;
+    letter-spacing: 0;
+    line-height:    1.2;
+    margin-left:    4px;     /* nudge text right of the icon column */
+}
+
+/* Replace .win-body's uniform gap with explicit per-section margins */
+#content-home {
+    gap: 0;
+}
+
+/* Manual composition nudge inside the centered 500px panel — not compensating
+   for SVG padding (logo.svg viewBox is already tight to the letterforms). */
+#content-home .logo-wrap {
+    margin-top:    29px;
+    margin-bottom: 45px;
+}
+
+#content-home .info-block + .info-block {
+    margin-top: 12px;        /* tighter rhythm: info1 → info2 */
+}
+
+/* ---- Spec rows (studio profile data) ---- */
+
+.spec-key {
+    width:          100px;
+    flex-shrink:    0;
+    font-family:    var(--font);
+    font-weight:    bold;
+    font-size:      10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color:          var(--black);
+}
+
+.spec-val {
+    flex:           1;
+    font-family:    var(--font);
+    font-size:      11px;
+    color:          var(--black);
+    display:        flex;
+    align-items:    center;
+    letter-spacing: 0.5px;
+}
+
+.status-dot {
+    display:      inline-block;
+    width:        8px;
+    height:       8px;
+    background:   var(--black);
+    margin-right: 8px;
+    flex-shrink:  0;
+    animation:    pulse 2.2s ease-in-out infinite;
+}
+
+
+.info-key {
+    width:       40px;
+    flex-shrink: 0;
+    font-size:   15px;
+    line-height: 1;
+    display:     flex;
+    align-items: center;
+    justify-content: center;
+    color:       var(--black);
+}
+
+/* Pixel-art icons displayed at 2× native (18→36) so each source pixel maps
+   to a clean 2×2 block — crisp on any DPI, no interpolation artefacts */
+.info-key img {
+    width:           36px;
+    height:          36px;
+    display:         block;
+    image-rendering: pixelated;
+}
+
+/* SVG icons (LinkedIn) — render smoothly, same display size */
+.info-key img[src$=".svg"] {
+    image-rendering: auto;
+}
+
+.info-val {
+    font-family:     var(--font);
+    font-size:       12px;
+    color:           var(--black);
+    text-decoration: none;
+    align-self:      stretch;
+    display:         flex;
+    align-items:     center;
+    user-select:     text;
+    -webkit-user-select: text;
+    cursor:          text;
+}
+
+a.info-val {
+    cursor: pointer;
+}
+
+a.info-val {
+    text-decoration: underline;
+}
+
+a.info-val:hover {
+    text-decoration: none;
+}
+
+.copy-btn {
+    flex-shrink:     0;
+    width:           22px;
+    height:          22px;
+    background:      transparent;
+    border:          1px solid var(--black);
+    color:           var(--black);
+    font-size:       12px;
+    font-family:     var(--font);
+    cursor:          pointer;
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    padding:         0;
+    user-select:     none;
+    -webkit-user-select: none;
+}
+
+.copy-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.info-row:hover .copy-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.copy-btn:hover  { background: var(--black); color: var(--white); }
+.copy-btn:active { opacity: 0.7; }
+
+
+
+/* =============================================
+   PANEL STAGE — single tabbed window, centered
+   ============================================= */
+
+.panel-stage {
+    top:        50%;
+    left:       50%;
+    width:      660px;
+    max-width:  calc(100vw - 48px);
+    transform:  translate(-50%, -50%);
+    z-index:    110;
+}
+
+/* =============================================
+   TAB STRIP — embedded inside the black title bar
+   ============================================= */
+
+/*
+  Tabs are segments of the title bar itself. Inactive tabs sit on the black bg
+  with white text. The active tab inverts to white-on-black AND its white fill
+  extends through to the panel below — visually fusing the tab and content.
+*/
+.tab-strip {
+    display:     flex;
+    align-items: stretch;
+    flex:        1;
+    min-width:   0;
+}
+
+.tab {
+    background:     transparent;
+    color:          var(--white);
+    border:         none;
+    padding:        0 16px;
+    display:        flex;
+    align-items:    center;
+    font-family:    var(--font);
+    font-size:      10px;
+    font-weight:    bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    line-height:    1;
+    cursor:         pointer;
+    white-space:    nowrap;
+    position:       relative;
+}
+
+/* Subtle 1px white separators between inactive tabs */
+.tab + .tab::before {
+    content:    "";
+    position:   absolute;
+    left:       0;
+    top:        25%;
+    bottom:     25%;
+    width:      1px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.tab:hover:not(.is-active) {
+    background: #1f1f1f;
+}
+
+/* Active tab: full inversion. White fill spans the full title-bar height,
+   so its bottom edge sits flush against the white panel below — they merge. */
+.tab.is-active {
+    background: var(--white);
+    color:      var(--black);
+    cursor:     default;
+    outline:    1px dotted var(--black);
+    outline-offset: -4px;
+}
+
+/* Hide the separator on either side of the active tab (would cut into the inversion) */
+.tab.is-active::before,
+.tab.is-active + .tab::before {
+    display: none;
+}
+
+/* =============================================
+   PANEL CONTENT AREA
+   ============================================= */
+
+.panel-area {
+    position:    relative;
+    z-index:     0;
+    border-top:  2px solid var(--black);  /* hard separator so active tab can't bleed down */
+    height:      500px;                    /* fixed so the window stays one size across all tabs */
+}
+
+.panel-area .win-body {
+    display:    none;
+    height:     100%;
+    overflow-y: auto;
+}
+
+.panel-area .win-body.is-visible {
+    display:         flex;
+    /* `safe` keeps content top-aligned (and fully scrollable) when it
+       overflows — without it, centered content gets clipped at the top */
+    justify-content: safe center;
+    align-items:     center;
+}
+
+/* =============================================
+   PANEL CONTENT
+   ============================================= */
+
+.about-body {
+    align-items: stretch;
+}
+
+.about-text {
+    width:          100%;
+    display:        flex;
+    flex-direction: column;
+    gap:            16px;
+    font-family:    var(--font-body);
+    font-size:      16px;
+    line-height:    1.65;
+    color:          var(--black);
+    user-select:    text;
+    -webkit-user-select: text;
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor:         text;
+}
+
+/* Section headers — JetBrains Mono, rhymes with HOME's data labels */
+.about-label {
+    font-family:    var(--font-crt);
+    font-weight:    700;
+    font-size:      13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom:  2px solid var(--black);
+    padding-bottom: 4px;
+    margin-top:     8px;
+    cursor:         default;
+}
+
+.about-label:first-child {
+    margin-top: 0;
+}
+
+.about-text a {
+    color:            var(--black);
+    text-decoration:  underline;
+    text-underline-offset: 2px;
+}
+
+.about-text a:hover {
+    background: var(--black);
+    color:      var(--white);
+    text-decoration: none;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 560px) {
+    /* Anchor the window to the top with breathing room above */
+    .desktop {
+        align-items:     flex-start;
+        justify-content: center;
+        padding:         24px 16px;
+        height:          100vh;
+    }
+
+    .desktop-icons { display: none; }
+
+    /* Stage stays a real window: keep border + box-shadow from .window. */
+    .panel-stage {
+        position:   relative;
+        top:        auto;
+        left:       auto;
+        transform:  none !important;
+        width:      100%;
+        max-width:  100%;
+    }
+
+    /* Title-bar grows so tabs are tappable on touch screens */
+    .title-bar      { height: 44px; }
+    .title-dot      { margin: 0 10px; }
+    /* Hide decorative window controls on mobile so tabs get the full strip */
+    .title-controls { display: none; }
+
+    /* Tabs: bigger tap targets, scroll horizontally if they overflow */
+    .tab-strip   { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; }
+    .tab         { padding: 0 14px; font-size: 11px; letter-spacing: 1.5px; }
+
+    /* Window stays a fixed, sensible size — dither breathes around it */
+    .panel-area {
+        height: 500px;
+    }
+
+    /* Top-align HOME so the logo sits near the top instead of floating in
+       vertical-center whitespace inside the 500px panel */
+    #content-home.is-visible {
+        justify-content: flex-start;
+    }
+
+    #content-home .logo-wrap {
+        margin-top:    12px;
+        margin-bottom: 28px;
+    }
+
+    .win-body { padding: 18px 14px; gap: 14px; }
+    .tagline  { font-size: 9px; letter-spacing: 4px; }
+}
+
+/* Short viewports — phone landscape, etc. Width may be > 560px so the
+   width-based mobile rules don't fire, but the 500px panel + centered
+   window won't fit. Cap the panel height and anchor to the top so the
+   title bar (and tabs) stays on-screen. */
+@media (max-height: 560px) {
+    .desktop {
+        align-items: flex-start;
+        padding:     16px;
+    }
+
+    .desktop-icons { display: none; }
+
+    .panel-stage {
+        position:  relative;
+        top:       auto;
+        left:      auto;
+        transform: none !important;
+        width:     100%;
+        max-width: 720px;
+    }
+
+    .title-controls { display: none; }
+
+    .panel-area {
+        height:     calc(100vh - 100px);
+        min-height: 220px;
+    }
+}
