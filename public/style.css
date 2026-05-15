@@ -119,15 +119,15 @@ body {
     color:        var(--white);
     text-align:   center;
     text-transform: uppercase;
-    text-shadow:  1px 1px 0 #000, -1px -1px 0 #000,
-                  1px -1px 0 #000, -1px 1px 0 #000;
+    text-shadow:  1px 1px 0 rgba(0,0,0,0.25), -1px -1px 0 rgba(0,0,0,0.25),
+                  1px -1px 0 rgba(0,0,0,0.25), -1px 1px 0 rgba(0,0,0,0.25);
 }
 
 .desktop-icon:hover .icon-label,
 .desktop-icon:focus .icon-label {
     color:        var(--black);
-    text-shadow:  1px 1px 0 #fff, -1px -1px 0 #fff,
-                  1px -1px 0 #fff, -1px 1px 0 #fff;
+    text-shadow:  1px 1px 0 rgba(255,255,255,0.25), -1px -1px 0 rgba(255,255,255,0.25),
+                  1px -1px 0 rgba(255,255,255,0.25), -1px 1px 0 rgba(255,255,255,0.25);
 }
 
 /* =============================================
