@@ -547,6 +547,27 @@ a.info-val:hover {
     margin-top: 0;
 }
 
+/* Entry heading row: title left, meta (status / role / platform) right */
+.about-label {
+    display:         flex;
+    justify-content: space-between;
+    align-items:     baseline;
+    gap:             16px;
+}
+
+.label-meta {
+    font-weight:    400;
+    font-size:      11px;
+    letter-spacing: 1.5px;
+    white-space:    nowrap;
+    text-transform: none;     /* caps typed in the HTML so "iOS" survives */
+}
+
+/* Text tabs read top-down; only HOME stays vertically centered */
+.panel-area .win-body.is-visible:not(#content-home) {
+    justify-content: flex-start;
+}
+
 /* Project key art. Scales with the panel; width/height attrs set the ratio. */
 .project-art {
     display:    block;
@@ -633,6 +654,9 @@ a.info-val:hover {
     }
 
     .win-body { padding: 18px 14px; gap: 14px; }
+
+    /* Meta drops under the title when the row gets tight */
+    .about-label { flex-direction: column; gap: 2px; }
     .tagline  { font-size: 9px; letter-spacing: 4px; }
 }
 
