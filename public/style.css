@@ -629,6 +629,9 @@ a.info-val:hover {
 
 .member-text .about-label { margin-top: 0; }
 
+/* Alternate the portrait side down the list */
+.member:nth-child(even) { flex-direction: row-reverse; }
+
 /* Inverted pill for awards/accolades — our own type, not store artwork */
 .award-tag {
     display:        inline-block;
