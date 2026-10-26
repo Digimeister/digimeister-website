@@ -34,7 +34,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Only animation in the UI */
+/* Title-dot / status-dot blink (pixel-art loops live with .pixel-art) */
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50%       { opacity: 0.2; }
@@ -568,12 +568,40 @@ a.info-val:hover {
     justify-content: flex-start;
 }
 
-/* Small 1-bit pixel art at the top of a project entry (40×24 grid at 3×) */
+/* Small 1-bit pixel art at the top of an entry (40×24 grid at 3×).
+   Each is a horizontal sprite sheet stepped one 120px frame at a time;
+   frame 0 is the rest pose, which is all reduced-motion users see. */
 .pixel-art {
-    display:         block;
-    width:           120px;
-    height:          72px;
-    image-rendering: pixelated;
+    width:             120px;
+    height:            72px;
+    flex-shrink:       0;
+    background-repeat: no-repeat;
+    image-rendering:   pixelated;
+}
+
+.pixel-art--link {
+    background-image: url("art/px-link-sheet.svg");
+    background-size:  4560px 72px;
+    animation:        px-link 5.7s steps(38) infinite;
+}
+@keyframes px-link { to { background-position: -4560px 0; } }
+
+.pixel-art--stanley {
+    background-image: url("art/px-stanley-sheet.svg");
+    background-size:  2040px 72px;
+    animation:        px-stanley 5.1s steps(17) infinite;
+}
+@keyframes px-stanley { to { background-position: -2040px 0; } }
+
+.pixel-art--moonrangers {
+    background-image: url("art/px-moonrangers-sheet.svg");
+    background-size:  1440px 72px;
+    animation:        px-moonrangers 4.2s steps(12) infinite;
+}
+@keyframes px-moonrangers { to { background-position: -1440px 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .pixel-art { animation: none; }
 }
 
 /* TEAM: square portrait beside each person's heading + text */
