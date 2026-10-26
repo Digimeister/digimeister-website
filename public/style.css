@@ -603,6 +603,70 @@ a.info-val:hover {
 }
 
 /* =============================================
+   POP-UP WINDOWS — desktop-only extras spawned per tab (see script)
+   ============================================= */
+
+.popup {
+    position:   absolute;
+    background: var(--white);
+    border:     var(--border);
+    box-shadow: 4px 4px 0 var(--black);
+    z-index:    105;              /* behind .panel-stage until clicked */
+    animation:  popup-open 140ms steps(3, end) both;
+}
+
+@keyframes popup-open {
+    from { transform: scale(0.6); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+
+.popup-bar {
+    display:     flex;
+    align-items: center;
+    gap:         8px;
+    height:      24px;
+    padding:     0 6px 0 10px;
+    background:  var(--black);
+    color:       var(--white);
+    font-family: var(--font-crt);
+    font-size:   10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    cursor:      grab;
+    touch-action: none;
+}
+
+.popup-bar:active { cursor: grabbing; }
+
+.popup-title {
+    flex:          1;
+    white-space:   nowrap;
+    overflow:      hidden;
+    text-overflow: ellipsis;
+}
+
+.popup-close {
+    width:      12px;
+    height:     12px;
+    background: var(--white);
+    border:     2px solid var(--white);
+    cursor:     pointer;
+    flex-shrink: 0;
+}
+
+.popup-close:hover { background: var(--black); }
+
+.popup img {
+    display: block;
+    width:   100%;
+    height:  auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .popup { animation: none; }
+}
+
+/* =============================================
    RESPONSIVE
    ============================================= */
 

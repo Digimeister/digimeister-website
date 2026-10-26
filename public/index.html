@@ -166,7 +166,132 @@
                 content.classList.add('is-visible');
                 content.scrollTop = 0;
             }
+            spawnPopups(tab.dataset.panel);
         }
+
+        // ---- Pop-up windows: a few scattered extras per tab, desktop only ----
+        // Placeholders (SVG) are swapped for real portraits/shots later.
+        var POPUPS = {
+            'content-about': [
+                { title: 'STUDIO',  src: 'art/popups/about-studio.svg',  w: 240 },
+                { title: 'FUKUOKA', src: 'art/popups/about-fukuoka.svg', w: 220 }
+            ],
+            'content-codev': [
+                { title: 'STANLEY 01', src: 'art/popups/stanley-1.svg', w: 240 },
+                { title: 'STANLEY 02', src: 'art/popups/stanley-2.svg', w: 220 }
+            ],
+            'content-games': [
+                { title: 'MOONRANGERS 01', src: 'art/popups/moonrangers-1.jpg', w: 260 },
+                { title: 'MOONRANGERS 02', src: 'art/popups/moonrangers-2.jpg', w: 230 },
+                { title: 'MOONRANGERS 03', src: 'art/popups/moonrangers-3.jpg', w: 240 },
+                { title: 'MOONRANGERS 04', src: 'art/popups/moonrangers-4.jpg', w: 220 }
+            ],
+            'content-team': [
+                { title: 'JAN',     src: 'art/popups/portrait-jan.svg',     w: 150 },
+                { title: 'LUKE',    src: 'art/popups/portrait-luke.svg',    w: 140 },
+                { title: 'REBECCA', src: 'art/popups/portrait-rebecca.svg', w: 145 },
+                { title: 'RIHO',    src: 'art/popups/portrait-riho.svg',    w: 140 }
+            ]
+        };
+
+        var desktop  = document.getElementById('desktop');
+        var stage    = document.getElementById('panel-stage');
+        var bigEnough = window.matchMedia('(min-width: 1100px) and (min-height: 600px) and (hover: hover) and (pointer: fine)');
+        var popupZ   = 120;
+        var popupTimers = [];
+        var popupGen = 0;                       // bumps on every clear; stale image loads bail
+
+        function clearPopups() {
+            popupTimers.forEach(clearTimeout);
+            popupTimers = [];
+            popupGen++;
+            desktop.querySelectorAll('.popup').forEach(function (p) { p.remove(); });
+        }
+
+        function jitter(n) { return Math.round((Math.random() * 2 - 1) * n); }
+
+        // Slots hug the main window's sides so most of each pop-up sits in the
+        // dither gutter and the rest tucks behind the panel (never over text).
+        // Left slots stay below the desktop-icon column.
+        function slotPosition(i, w, h) {
+            var r  = stage.getBoundingClientRect();
+            var vw = window.innerWidth, vh = window.innerHeight;
+            var slots = [
+                { x: r.right - w * 0.3,  y: r.top - 24 },          // right, high
+                { x: r.left  - w * 0.7,  y: r.bottom - h + 30 },   // left, low
+                { x: r.right - w * 0.2,  y: r.bottom - h + 50 },   // right, low
+                { x: r.left  - w * 0.75, y: 300 }                  // left, under icons
+            ];
+            var s = slots[i % slots.length];
+            var x = Math.max(12, Math.min(vw - w - 12, s.x + jitter(20)));
+            var y = Math.max(12, Math.min(vh - h - 12, s.y + jitter(18)));
+            if (x < 120 && y < 280) y = 280;                        // keep icons clear
+            return { x: x, y: y };
+        }
+
+        function makeDraggable(win, bar) {
+            bar.addEventListener('pointerdown', function (e) {
+                if (e.target.classList.contains('popup-close')) return;
+                win.style.zIndex = ++popupZ;
+                var sx = e.clientX - win.offsetLeft, sy = e.clientY - win.offsetTop;
+                bar.setPointerCapture(e.pointerId);
+                function move(ev) {
+                    win.style.left = (ev.clientX - sx) + 'px';
+                    win.style.top  = (ev.clientY - sy) + 'px';
+                }
+                function up() {
+                    bar.removeEventListener('pointermove', move);
+                    bar.removeEventListener('pointerup', up);
+                }
+                bar.addEventListener('pointermove', move);
+                bar.addEventListener('pointerup', up);
+            });
+            win.addEventListener('pointerdown', function () { win.style.zIndex = ++popupZ; });
+        }
+
+        function spawnPopups(panelId) {
+            clearPopups();
+            if (!bigEnough.matches) return;
+            var gen = popupGen;
+            (POPUPS[panelId] || []).forEach(function (item, i) {
+                popupTimers.push(setTimeout(function () {
+                    var w = Math.round(item.w * (0.9 + Math.random() * 0.2));
+                    var img = new Image();
+                    img.alt = '';
+                    img.onload = function () {
+                        if (gen !== popupGen) return;
+                        var h = Math.round(w * img.naturalHeight / img.naturalWidth) + 28;
+                        var pos = slotPosition(i, w, h);
+                        var win = document.createElement('div');
+                        win.className = 'popup';
+                        win.setAttribute('aria-hidden', 'true');
+                        win.style.width = w + 'px';
+                        win.style.left  = pos.x + 'px';
+                        win.style.top   = pos.y + 'px';
+                        var bar = document.createElement('div');
+                        bar.className = 'popup-bar';
+                        bar.innerHTML = '<span class="popup-title"></span><span class="popup-close"></span>';
+                        bar.firstChild.textContent = item.title;
+                        bar.lastChild.addEventListener('click', function () { win.remove(); });
+                        win.appendChild(bar);
+                        win.appendChild(img);
+                        desktop.appendChild(win);
+                        makeDraggable(win, bar);
+                    };
+                    img.src = item.src;
+                }, 120 + i * 100));
+            });
+        }
+
+        bigEnough.addEventListener('change', function (e) {
+            if (!e.matches) { clearPopups(); return; }
+            var active = document.querySelector('.tab.is-active');
+            if (active) spawnPopups(active.dataset.panel);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') clearPopups();
+        });
 
         // Reset every panel's scroll on page open so reloads land at the top
         contents.forEach(function (c) { c.scrollTop = 0; });
