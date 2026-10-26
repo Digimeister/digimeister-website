@@ -547,16 +547,13 @@ a.info-val:hover {
     margin-top: 0;
 }
 
-/* 1-bit project art. Shown at 1:1 and cropped (object-fit: none) rather than
-   scaled, so the dither pattern never resamples into moiré on any screen. */
-.dither-art {
-    display:         block;
-    width:           100%;
-    height:          240px;
-    object-fit:      none;
-    object-position: center;
-    image-rendering: pixelated;
-    border:          var(--border);
+/* Project key art. Scales with the panel; width/height attrs set the ratio. */
+.project-art {
+    display:    block;
+    width:      100%;
+    height:     auto;
+    object-fit: cover;
+    border:     var(--border);
 }
 
 /* Inverted pill for awards/accolades — our own type, not store artwork */
@@ -636,7 +633,6 @@ a.info-val:hover {
     }
 
     .win-body { padding: 18px 14px; gap: 14px; }
-    .dither-art { height: 180px; }
     .tagline  { font-size: 9px; letter-spacing: 4px; }
 }
 

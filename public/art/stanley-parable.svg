@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1224 480" width="1224" height="480">
+  <rect width="1224" height="480" fill="#ececec"/>
+  <path d="M0 0L1224 480M1224 0L0 480" stroke="#c8c8c8" stroke-width="2"/>
+  <rect x="312" y="200" width="600" height="80" fill="#ececec"/>
+  <text x="612" y="235" text-anchor="middle" font-family="'JetBrains Mono','Courier New',monospace" font-size="22" font-weight="700" letter-spacing="3" fill="#000">THE STANLEY PARABLE: UD</text>
+  <text x="612" y="265" text-anchor="middle" font-family="'JetBrains Mono','Courier New',monospace" font-size="16" letter-spacing="2" fill="#666">KEY ART · 1224 × 480</text>
+</svg>
