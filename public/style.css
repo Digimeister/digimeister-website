@@ -568,12 +568,12 @@ a.info-val:hover {
     justify-content: flex-start;
 }
 
-/* Small 1-bit pixel art at the top of an entry (40×24 grid at 3×).
-   Each is a horizontal sprite sheet stepped one 120px frame at a time;
+/* Small 1-bit pixel art at the top of an entry (40×24 grid at 2×, like HOME icons).
+   Each is a horizontal sprite sheet stepped one 80px frame at a time;
    frame 0 is the rest pose, which is all reduced-motion users see. */
 .pixel-art {
-    width:             120px;
-    height:            72px;
+    width:             80px;
+    height:            48px;
     flex-shrink:       0;
     background-repeat: no-repeat;
     image-rendering:   pixelated;
@@ -581,24 +581,24 @@ a.info-val:hover {
 
 .pixel-art--link {
     background-image: url("art/px-link-sheet.svg");
-    background-size:  4560px 72px;
+    background-size:  3040px 48px;
     animation:        px-link 5.7s steps(38) infinite;
 }
-@keyframes px-link { to { background-position: -4560px 0; } }
+@keyframes px-link { to { background-position: -3040px 0; } }
 
 .pixel-art--stanley {
     background-image: url("art/px-stanley-sheet.svg");
-    background-size:  2040px 72px;
+    background-size:  1360px 48px;
     animation:        px-stanley 5.1s steps(17) infinite;
 }
-@keyframes px-stanley { to { background-position: -2040px 0; } }
+@keyframes px-stanley { to { background-position: -1360px 0; } }
 
 .pixel-art--moonrangers {
     background-image: url("art/px-moonrangers-sheet.svg");
-    background-size:  1440px 72px;
+    background-size:  960px 48px;
     animation:        px-moonrangers 4.2s steps(12) infinite;
 }
-@keyframes px-moonrangers { to { background-position: -1440px 0; } }
+@keyframes px-moonrangers { to { background-position: -960px 0; } }
 
 @media (prefers-reduced-motion: reduce) {
     .pixel-art { animation: none; }
@@ -613,8 +613,8 @@ a.info-val:hover {
 
 .portrait {
     flex-shrink:     0;
-    width:           76px;           /* 72px art (18-px grid at 4×) + border */
-    height:          76px;
+    width:           58px;           /* 54px art (18-px grid at 3×) + border */
+    height:          58px;
     border:          var(--border);
     image-rendering: pixelated;
 }
@@ -710,7 +710,6 @@ a.info-val:hover {
 
     .win-body { padding: 18px 14px; gap: 14px; }
 
-    .portrait { width: 58px; height: 58px; }   /* 54px art (3×) + border */
     .member   { gap: 12px; }
 
     /* Meta drops under the title when the row gets tight */
