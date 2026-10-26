@@ -50,6 +50,7 @@
                 <div class="tab-strip" role="tablist">
                     <div class="tab is-active" role="tab" data-panel="content-home">HOME</div>
                     <div class="tab" role="tab" data-panel="content-about">ABOUT</div>
+                    <div class="tab" role="tab" data-panel="content-codev">CO-DEV</div>
                     <div class="tab" role="tab" data-panel="content-games">GAMES</div>
                     <div class="tab" role="tab" data-panel="content-team">TEAM</div>
                 </div>
@@ -106,6 +107,17 @@
                     </div>
                 </div>
 
+                <div class="win-body" id="content-codev">
+                    <div class="about-text">
+                        <p class="about-label">▸ CO-DEVELOPMENT</p>
+                        <p>Placeholder: how we work alongside your team on online and multiplayer projects.</p>
+                        <p class="about-label">▸ SERVICES</p>
+                        <p>Placeholder: netcode, matchmaking, backend and live systems, porting and support.</p>
+                        <p class="about-label">▸ GET IN TOUCH</p>
+                        <p>Placeholder: <a href="mailto:hello@digimeister.co.jp">hello@digimeister.co.jp</a></p>
+                    </div>
+                </div>
+
                 <div class="win-body" id="content-games">
                     <div class="about-text">
                         <p class="about-label">▸ MOONRANGERS — In Development</p>
@@ -133,7 +145,7 @@
 
     <script>
         // Eagerly fetch Source Sans 3 on initial load so switching to
-        // ABOUT/GAMES/TEAM (the only tabs that use it) doesn't FOUT-flash.
+        // ABOUT/CO-DEV/GAMES/TEAM (the only tabs that use it) doesn't FOUT-flash.
         if (document.fonts && document.fonts.load) {
             document.fonts.load('400 15px "Source Sans 3"');
             document.fonts.load('700 15px "Source Sans 3"');
