@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
-  <rect width="400" height="400" fill="#ececec"/>
-  <path d="M0 0L400 400M400 0L0 400" stroke="#c8c8c8" stroke-width="2"/>
-  <rect x="50" y="166" width="300" height="64" fill="#ececec"/>
-  <text x="200" y="194" text-anchor="middle" font-family="'JetBrains Mono','Courier New',monospace" font-size="22" font-weight="700" letter-spacing="3" fill="#000">JAN</text>
-  <text x="200" y="220" text-anchor="middle" font-family="'JetBrains Mono','Courier New',monospace" font-size="16" letter-spacing="2" fill="#666">PORTRAIT · 400 × 400</text>
-</svg>

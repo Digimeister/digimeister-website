@@ -568,14 +568,38 @@ a.info-val:hover {
     justify-content: flex-start;
 }
 
-/* Project key art. Scales with the panel; width/height attrs set the ratio. */
-.project-art {
-    display:    block;
-    width:      100%;
-    height:     auto;
-    object-fit: cover;
-    border:     var(--border);
+/* Small 1-bit pixel art at the top of a project entry (40×24 grid at 3×) */
+.pixel-art {
+    display:         block;
+    width:           120px;
+    height:          72px;
+    image-rendering: pixelated;
 }
+
+/* TEAM: square portrait beside each person's heading + text */
+.member {
+    display:     flex;
+    align-items: flex-start;
+    gap:         16px;
+}
+
+.portrait {
+    flex-shrink:     0;
+    width:           76px;           /* 72px art (18-px grid at 4×) + border */
+    height:          76px;
+    border:          var(--border);
+    image-rendering: pixelated;
+}
+
+.member-text {
+    flex:           1;
+    min-width:      0;
+    display:        flex;
+    flex-direction: column;
+    gap:            8px;
+}
+
+.member-text .about-label { margin-top: 0; }
 
 /* Inverted pill for awards/accolades — our own type, not store artwork */
 .award-tag {
@@ -600,185 +624,6 @@ a.info-val:hover {
     background: var(--black);
     color:      var(--white);
     text-decoration: none;
-}
-
-/* =============================================
-   MEDIA PLAYER — desktop-only companion window (see script)
-   ============================================= */
-
-/* Main window glides aside when the player opens */
-.panel-stage { transition: left 240ms cubic-bezier(.2, .8, .2, 1); }
-
-.player {
-    z-index:   110;
-    animation: player-open 160ms steps(4, end) 120ms both;
-}
-
-.player[hidden] { display: none; }
-
-@keyframes player-open {
-    from { transform: scale(0.7); opacity: 0; }
-    to   { transform: scale(1);   opacity: 1; }
-}
-
-.player-bar {
-    cursor:       grab;
-    touch-action: none;
-}
-
-.player-bar:active { cursor: grabbing; }
-
-.player-title {
-    flex:           1;
-    align-self:     center;
-    padding-left:   14px;
-    color:          var(--white);
-    font-family:    var(--font-crt);
-    font-size:      10px;
-    font-weight:    700;
-    letter-spacing: 1.5px;
-    white-space:    nowrap;
-    overflow:       hidden;
-    text-overflow:  ellipsis;
-}
-
-button.ctrl-btn { padding: 0; cursor: pointer; }
-button.ctrl-btn--close:hover { background: var(--black); }
-
-/* Screen: fixed 16:9 on every tab so the player never changes shape */
-.player-screen {
-    position:     relative;
-    aspect-ratio: 16 / 9;
-    background:   var(--black);
-    display:      flex;
-}
-
-.player-img {
-    display:    block;
-    width:      100%;
-    height:     100%;
-    object-fit: cover;
-}
-
-.player-card { display: none; }
-
-/* TEAM: square portrait left, name + role right, like a staff card */
-.player.is-portrait .player-img {
-    width:        auto;
-    aspect-ratio: 1 / 1;
-    border-right: 2px solid var(--white);
-}
-
-.player.is-portrait .player-card {
-    flex:            1;
-    display:         flex;
-    flex-direction:  column;
-    justify-content: flex-end;
-    gap:             6px;
-    padding:         16px;
-    color:           var(--white);
-}
-
-.player-name {
-    font-family: var(--font-body);
-    font-size:   20px;
-    font-weight: 700;
-    line-height: 1.15;
-}
-
-.player-role {
-    font-family:    var(--font-crt);
-    font-size:      11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-/* Track: one block per item, current one filled */
-.player-track {
-    display:     flex;
-    align-items: center;
-    gap:         12px;
-    padding:     8px 12px;
-    border-top:  2px solid var(--black);
-}
-
-.player-blocks {
-    flex:    1;
-    display: flex;
-    gap:     4px;
-}
-
-.player-blocks button {
-    flex:       1;
-    height:     12px;
-    background: var(--white);
-    border:     2px solid var(--black);
-    padding:    0;
-    cursor:     pointer;
-}
-
-.player-blocks button:hover,
-.player-blocks button.is-current { background: var(--black); }
-
-.player-count {
-    font-family:    var(--font-crt);
-    font-size:      11px;
-    letter-spacing: 1px;
-    white-space:    nowrap;
-}
-
-/* Transport: prev / play-pause / next, then the caption */
-.player-controls {
-    display:     flex;
-    align-items: center;
-    gap:         6px;
-    padding:     8px 12px 10px;
-    border-top:  1px solid var(--black);
-}
-
-.player-btn {
-    width:           32px;
-    height:          26px;
-    flex-shrink:     0;
-    display:         flex;
-    align-items:     center;
-    justify-content: center;
-    background:      var(--white);
-    border:          2px solid var(--black);
-    box-shadow:      2px 2px 0 var(--black);
-    padding:         0;
-    cursor:          pointer;
-}
-
-.player-btn svg { width: 12px; height: 12px; fill: var(--black); shape-rendering: crispEdges; }
-
-.player-btn:hover { background: var(--black); }
-.player-btn:hover svg { fill: var(--white); }
-
-.player-btn:active { box-shadow: none; transform: translate(2px, 2px); }
-
-.player-btn .icon-pause,
-.player-btn[aria-pressed="true"] .icon-play { display: none; }
-.player-btn[aria-pressed="true"] .icon-pause { display: block; }
-
-.player-caption {
-    flex:        1;
-    margin-left: 8px;
-    font-family: var(--font-body);
-    font-size:   14px;
-    line-height: 1.3;
-    min-width:   0;
-}
-
-.player button:focus-visible,
-.player-btn:focus-visible {
-    outline:        2px solid var(--black);
-    outline-offset: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .player      { animation: none; }
-    .panel-stage { transition: none; }
 }
 
 /* =============================================
@@ -833,6 +678,9 @@ button.ctrl-btn--close:hover { background: var(--black); }
     }
 
     .win-body { padding: 18px 14px; gap: 14px; }
+
+    .portrait { width: 58px; height: 58px; }   /* 54px art (3×) + border */
+    .member   { gap: 12px; }
 
     /* Meta drops under the title when the row gets tight */
     .about-label { flex-direction: column; gap: 2px; }

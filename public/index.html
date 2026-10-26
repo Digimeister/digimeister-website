@@ -110,8 +110,8 @@
 
                 <div class="win-body" id="content-codev">
                     <div class="about-text">
+                        <img class="pixel-art" src="art/px-stanley.svg" width="120" height="72" alt="">
                         <p class="about-label"><span>▸ THE STANLEY PARABLE: UD</span><span class="label-meta">iOS · 2024</span></p>
-                        <img class="project-art" src="art/stanley-parable.svg" width="1224" height="480" alt="The Stanley Parable: Ultra Deluxe key art (placeholder)">
                         <p><span class="award-tag">App Store Editors' Choice</span></p>
                         <p>One of the best-reviewed narrative games of the last decade. We took it from PC and console to iPhone and iPad.</p>
                         <p><a href="https://apps.apple.com/app/id6479513152" target="_blank" rel="noopener noreferrer">App Store</a></p>
@@ -120,8 +120,8 @@
 
                 <div class="win-body" id="content-games">
                     <div class="about-text">
+                        <img class="pixel-art" src="art/px-moonrangers.svg" width="120" height="72" alt="">
                         <p class="about-label"><span>▸ MOONRANGERS</span><span class="label-meta">IN DEVELOPMENT</span></p>
-                        <img class="project-art" src="art/moonrangers.svg" width="1224" height="480" alt="Moonrangers key art (placeholder)">
                         <p>The moon shattered and humanity went underground. You go out. A top-down survival game about hauling cargo and building roads other players use, while the wasteland tries to kill you.</p>
                         <p><a href="https://playmoonrangers.com/" target="_blank" rel="noopener noreferrer">playmoonrangers.com</a></p>
                     </div>
@@ -129,56 +129,39 @@
 
                 <div class="win-body" id="content-team">
                     <div class="about-text">
-                        <p class="about-label"><span>▸ JAN STROETMANN</span><span class="label-meta">FOUNDER</span></p>
-                        <p>Shipped games for over a decade. Credits include The Stanley Parable and work at Crows Crows Crows. Started Digimeister to build multiplayer.</p>
-                        <p class="about-label"><span>▸ LUKE JONES</span><span class="label-meta">PROGRAMMER</span></p>
-                        <p>Works in Unity on network code and gameplay systems.</p>
-                        <p class="about-label"><span>▸ REBECCA KUROIWA</span><span class="label-meta">CONCEPT ARTIST</span></p>
-                        <p>Takes characters and creatures from first sketch to finished art.</p>
-                        <p class="about-label"><span>▸ RIHO YAMASHITA</span><span class="label-meta">UI/UX DESIGNER</span></p>
-                        <p>Takes interfaces from design to implementation.</p>
+                        <div class="member">
+                            <img class="portrait" src="art/px-portrait.svg" width="72" height="72" alt="">
+                            <div class="member-text">
+                                <p class="about-label"><span>▸ JAN STROETMANN</span><span class="label-meta">FOUNDER</span></p>
+                                <p>Shipped games for over a decade. Credits include The Stanley Parable and work at Crows Crows Crows. Started Digimeister to build multiplayer.</p>
+                            </div>
+                        </div>
+                        <div class="member">
+                            <img class="portrait" src="art/px-portrait.svg" width="72" height="72" alt="">
+                            <div class="member-text">
+                                <p class="about-label"><span>▸ LUKE JONES</span><span class="label-meta">PROGRAMMER</span></p>
+                                <p>Works in Unity on network code and gameplay systems.</p>
+                            </div>
+                        </div>
+                        <div class="member">
+                            <img class="portrait" src="art/px-portrait.svg" width="72" height="72" alt="">
+                            <div class="member-text">
+                                <p class="about-label"><span>▸ REBECCA KUROIWA</span><span class="label-meta">CONCEPT ARTIST</span></p>
+                                <p>Takes characters and creatures from first sketch to finished art.</p>
+                            </div>
+                        </div>
+                        <div class="member">
+                            <img class="portrait" src="art/px-portrait.svg" width="72" height="72" alt="">
+                            <div class="member-text">
+                                <p class="about-label"><span>▸ RIHO YAMASHITA</span><span class="label-meta">UI/UX DESIGNER</span></p>
+                                <p>Takes interfaces from design to implementation.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
 
-        </div>
-
-
-        <!-- Media player: desktop-only companion window, filled per tab by the script -->
-        <div class="window player" id="player" hidden>
-            <div class="title-bar player-bar">
-                <span class="player-title"></span>
-                <div class="title-controls">
-                    <span class="ctrl-btn" aria-hidden="true"></span>
-                    <span class="ctrl-btn" aria-hidden="true"></span>
-                    <button class="ctrl-btn ctrl-btn--close player-close" aria-label="Close player"></button>
-                </div>
-            </div>
-            <div class="player-screen">
-                <img class="player-img" alt="">
-                <div class="player-card">
-                    <span class="player-name"></span>
-                    <span class="player-role"></span>
-                </div>
-            </div>
-            <div class="player-track">
-                <div class="player-blocks"></div>
-                <span class="player-count"></span>
-            </div>
-            <div class="player-controls">
-                <button class="player-btn" data-act="prev" aria-label="Previous">
-                    <svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1" y="2" width="2" height="8"/><path d="M11 2v8L4 6z"/></svg>
-                </button>
-                <button class="player-btn" data-act="play" aria-label="Play slideshow" aria-pressed="false">
-                    <svg class="icon-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 2v8l7-4z"/></svg>
-                    <svg class="icon-pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="3" y="2" width="2" height="8"/><rect x="7" y="2" width="2" height="8"/></svg>
-                </button>
-                <button class="player-btn" data-act="next" aria-label="Next">
-                    <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 2v8l7-4z"/><rect x="9" y="2" width="2" height="8"/></svg>
-                </button>
-                <p class="player-caption"></p>
-            </div>
         </div>
 
     </div>
@@ -203,143 +186,7 @@
                 content.classList.add('is-visible');
                 content.scrollTop = 0;
             }
-            openPlayer(tab.dataset.panel);
         }
-
-        // ---- Media player: one companion window per tab, desktop only ----
-        // Placeholder captions/images are swapped for real ones later.
-        var MEDIA = {
-            'content-about': { title: 'ABOUT', items: [
-                { src: 'art/popups/about-studio.svg',  caption: 'Placeholder: the studio' },
-                { src: 'art/popups/about-fukuoka.svg', caption: 'Placeholder: Fukuoka' }
-            ]},
-            'content-codev': { title: 'THE STANLEY PARABLE: UD', items: [
-                { src: 'art/popups/stanley-1.svg', caption: 'Placeholder: screenshot caption 1' },
-                { src: 'art/popups/stanley-2.svg', caption: 'Placeholder: screenshot caption 2' }
-            ]},
-            'content-games': { title: 'MOONRANGERS', items: [
-                { src: 'art/popups/moonrangers-1.jpg', caption: 'Placeholder: screenshot caption 1' },
-                { src: 'art/popups/moonrangers-2.jpg', caption: 'Placeholder: screenshot caption 2' },
-                { src: 'art/popups/moonrangers-3.jpg', caption: 'Placeholder: screenshot caption 3' },
-                { src: 'art/popups/moonrangers-4.jpg', caption: 'Placeholder: screenshot caption 4' }
-            ]},
-            'content-team': { title: 'TEAM', portrait: true, items: [
-                { src: 'art/popups/portrait-jan.svg',     name: 'Jan Stroetmann',  role: 'Founder' },
-                { src: 'art/popups/portrait-luke.svg',    name: 'Luke Jones',      role: 'Programmer' },
-                { src: 'art/popups/portrait-rebecca.svg', name: 'Rebecca Kuroiwa', role: 'Concept Artist' },
-                { src: 'art/popups/portrait-riho.svg',    name: 'Riho Yamashita',  role: 'UI/UX Designer' }
-            ]}
-        };
-
-        var desktop   = document.getElementById('desktop');
-        var stage     = document.getElementById('panel-stage');
-        var player    = document.getElementById('player');
-        var pImg      = player.querySelector('.player-img');
-        var pBlocks   = player.querySelector('.player-blocks');
-        var pPlay     = player.querySelector('[data-act="play"]');
-        var bigEnough = window.matchMedia('(min-width: 1200px) and (min-height: 600px) and (hover: hover) and (pointer: fine)');
-        var GAP = 32, MAIN_W = 660, ICON_COL = 130;
-        var media = null, index = 0, timer = null;
-
-        // Main window slides left; player sits to its right, top-aligned.
-        function layoutPlayer() {
-            var vw = window.innerWidth;
-            var w  = Math.max(340, Math.min(460, vw - ICON_COL - MAIN_W - GAP - 24));
-            var x0 = Math.max(ICON_COL, (vw - (MAIN_W + GAP + w)) / 2);
-            stage.style.left = (x0 + MAIN_W / 2) + 'px';
-            player.style.width = w + 'px';
-            player.style.left  = (x0 + MAIN_W + GAP) + 'px';
-            player.style.top   = (window.innerHeight / 2 - stage.offsetHeight / 2) + 'px';
-        }
-
-        function show(i) {
-            var items = media.items;
-            index = (i + items.length) % items.length;
-            var item = items[index];
-            pImg.src = item.src;
-            player.querySelector('.player-name').textContent    = item.name || '';
-            player.querySelector('.player-role').textContent    = item.role || '';
-            player.querySelector('.player-caption').textContent = item.caption || '';
-            player.querySelector('.player-count').textContent   = (index + 1) + ' / ' + items.length;
-            pBlocks.querySelectorAll('button').forEach(function (b, n) {
-                b.classList.toggle('is-current', n === index);
-            });
-        }
-
-        function stopPlay() {
-            clearInterval(timer); timer = null;
-            pPlay.setAttribute('aria-pressed', 'false');
-            pPlay.setAttribute('aria-label', 'Play slideshow');
-        }
-
-        function startPlay() {
-            stopPlay();
-            timer = setInterval(function () { show(index + 1); }, 3500);
-            pPlay.setAttribute('aria-pressed', 'true');
-            pPlay.setAttribute('aria-label', 'Pause slideshow');
-        }
-
-        function closePlayer() {
-            stopPlay();
-            player.hidden = true;
-            media = null;
-            stage.style.left = '';               // back to centered
-        }
-
-        function openPlayer(panelId) {
-            stopPlay();
-            media = MEDIA[panelId];
-            if (!media || !bigEnough.matches) { closePlayer(); return; }
-            player.querySelector('.player-title').textContent = media.title;
-            player.classList.toggle('is-portrait', !!media.portrait);
-            pBlocks.innerHTML = '';
-            media.items.forEach(function (item, n) {
-                var b = document.createElement('button');
-                b.setAttribute('aria-label', 'Show ' + (n + 1));
-                b.addEventListener('click', function () { show(n); if (timer) startPlay(); });
-                pBlocks.appendChild(b);
-            });
-            show(0);
-            layoutPlayer();
-            // Re-trigger the open animation on every tab switch
-            player.hidden = true; void player.offsetWidth; player.hidden = false;
-        }
-
-        player.querySelector('[data-act="prev"]').addEventListener('click', function () { show(index - 1); if (timer) startPlay(); });
-        player.querySelector('[data-act="next"]').addEventListener('click', function () { show(index + 1); if (timer) startPlay(); });
-        pPlay.addEventListener('click', function () { timer ? stopPlay() : startPlay(); });
-        player.querySelector('.player-close').addEventListener('click', closePlayer);
-
-        // Drag by the title bar
-        player.querySelector('.player-bar').addEventListener('pointerdown', function (e) {
-            if (e.target.closest('button')) return;
-            var bar = e.currentTarget;
-            var sx = e.clientX - player.offsetLeft, sy = e.clientY - player.offsetTop;
-            bar.setPointerCapture(e.pointerId);
-            function move(ev) {
-                player.style.left = (ev.clientX - sx) + 'px';
-                player.style.top  = (ev.clientY - sy) + 'px';
-            }
-            function up() {
-                bar.removeEventListener('pointermove', move);
-                bar.removeEventListener('pointerup', up);
-            }
-            bar.addEventListener('pointermove', move);
-            bar.addEventListener('pointerup', up);
-        });
-
-        document.addEventListener('keydown', function (e) {
-            if (player.hidden) return;
-            if (e.key === 'Escape')     closePlayer();
-            if (e.key === 'ArrowLeft')  { show(index - 1); if (timer) startPlay(); }
-            if (e.key === 'ArrowRight') { show(index + 1); if (timer) startPlay(); }
-        });
-
-        bigEnough.addEventListener('change', function () {
-            var active = document.querySelector('.tab.is-active');
-            if (active) openPlayer(active.dataset.panel);
-        });
-        window.addEventListener('resize', function () { if (!player.hidden) layoutPlayer(); });
 
         // Reset every panel's scroll on page open so reloads land at the top
         contents.forEach(function (c) { c.scrollTop = 0; });

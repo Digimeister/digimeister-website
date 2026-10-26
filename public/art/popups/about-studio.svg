@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="480" height="270">
-  <rect width="480" height="270" fill="#ececec"/>
-  <path d="M0 0L480 270M480 0L0 270" stroke="#c8c8c8" stroke-width="2"/>
-  <rect x="90" y="101" width="300" height="64" fill="#ececec"/>
-  <text x="240" y="129" text-anchor="middle" font-family="'JetBrains Mono','Courier New',monospace" font-size="22" font-weight="700" letter-spacing="3" fill="#000">STUDIO</text>
-  <text x="240" y="155" text-anchor="middle" font-family="'JetBrains Mono','Courier New',monospace" font-size="16" letter-spacing="2" fill="#666">PHOTO · 480 × 270</text>
-</svg>
