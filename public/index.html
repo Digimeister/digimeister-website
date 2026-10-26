@@ -144,6 +144,43 @@
 
         </div>
 
+
+        <!-- Media player: desktop-only companion window, filled per tab by the script -->
+        <div class="window player" id="player" hidden>
+            <div class="title-bar player-bar">
+                <span class="player-title"></span>
+                <div class="title-controls">
+                    <span class="ctrl-btn" aria-hidden="true"></span>
+                    <span class="ctrl-btn" aria-hidden="true"></span>
+                    <button class="ctrl-btn ctrl-btn--close player-close" aria-label="Close player"></button>
+                </div>
+            </div>
+            <div class="player-screen">
+                <img class="player-img" alt="">
+                <div class="player-card">
+                    <span class="player-name"></span>
+                    <span class="player-role"></span>
+                </div>
+            </div>
+            <div class="player-track">
+                <div class="player-blocks"></div>
+                <span class="player-count"></span>
+            </div>
+            <div class="player-controls">
+                <button class="player-btn" data-act="prev" aria-label="Previous">
+                    <svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1" y="2" width="2" height="8"/><path d="M11 2v8L4 6z"/></svg>
+                </button>
+                <button class="player-btn" data-act="play" aria-label="Play slideshow" aria-pressed="false">
+                    <svg class="icon-play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 2v8l7-4z"/></svg>
+                    <svg class="icon-pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="3" y="2" width="2" height="8"/><rect x="7" y="2" width="2" height="8"/></svg>
+                </button>
+                <button class="player-btn" data-act="next" aria-label="Next">
+                    <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 2v8l7-4z"/><rect x="9" y="2" width="2" height="8"/></svg>
+                </button>
+                <p class="player-caption"></p>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -166,132 +203,143 @@
                 content.classList.add('is-visible');
                 content.scrollTop = 0;
             }
-            spawnPopups(tab.dataset.panel);
+            openPlayer(tab.dataset.panel);
         }
 
-        // ---- Pop-up windows: a few scattered extras per tab, desktop only ----
-        // Placeholders (SVG) are swapped for real portraits/shots later.
-        var POPUPS = {
-            'content-about': [
-                { title: 'STUDIO',  src: 'art/popups/about-studio.svg',  w: 240 },
-                { title: 'FUKUOKA', src: 'art/popups/about-fukuoka.svg', w: 220 }
-            ],
-            'content-codev': [
-                { title: 'STANLEY 01', src: 'art/popups/stanley-1.svg', w: 240 },
-                { title: 'STANLEY 02', src: 'art/popups/stanley-2.svg', w: 220 }
-            ],
-            'content-games': [
-                { title: 'MOONRANGERS 01', src: 'art/popups/moonrangers-1.jpg', w: 260 },
-                { title: 'MOONRANGERS 02', src: 'art/popups/moonrangers-2.jpg', w: 230 },
-                { title: 'MOONRANGERS 03', src: 'art/popups/moonrangers-3.jpg', w: 240 },
-                { title: 'MOONRANGERS 04', src: 'art/popups/moonrangers-4.jpg', w: 220 }
-            ],
-            'content-team': [
-                { title: 'JAN',     src: 'art/popups/portrait-jan.svg',     w: 150 },
-                { title: 'LUKE',    src: 'art/popups/portrait-luke.svg',    w: 140 },
-                { title: 'REBECCA', src: 'art/popups/portrait-rebecca.svg', w: 145 },
-                { title: 'RIHO',    src: 'art/popups/portrait-riho.svg',    w: 140 }
-            ]
+        // ---- Media player: one companion window per tab, desktop only ----
+        // Placeholder captions/images are swapped for real ones later.
+        var MEDIA = {
+            'content-about': { title: 'ABOUT', items: [
+                { src: 'art/popups/about-studio.svg',  caption: 'Placeholder: the studio' },
+                { src: 'art/popups/about-fukuoka.svg', caption: 'Placeholder: Fukuoka' }
+            ]},
+            'content-codev': { title: 'THE STANLEY PARABLE: UD', items: [
+                { src: 'art/popups/stanley-1.svg', caption: 'Placeholder: screenshot caption 1' },
+                { src: 'art/popups/stanley-2.svg', caption: 'Placeholder: screenshot caption 2' }
+            ]},
+            'content-games': { title: 'MOONRANGERS', items: [
+                { src: 'art/popups/moonrangers-1.jpg', caption: 'Placeholder: screenshot caption 1' },
+                { src: 'art/popups/moonrangers-2.jpg', caption: 'Placeholder: screenshot caption 2' },
+                { src: 'art/popups/moonrangers-3.jpg', caption: 'Placeholder: screenshot caption 3' },
+                { src: 'art/popups/moonrangers-4.jpg', caption: 'Placeholder: screenshot caption 4' }
+            ]},
+            'content-team': { title: 'TEAM', portrait: true, items: [
+                { src: 'art/popups/portrait-jan.svg',     name: 'Jan Stroetmann',  role: 'Founder' },
+                { src: 'art/popups/portrait-luke.svg',    name: 'Luke Jones',      role: 'Programmer' },
+                { src: 'art/popups/portrait-rebecca.svg', name: 'Rebecca Kuroiwa', role: 'Concept Artist' },
+                { src: 'art/popups/portrait-riho.svg',    name: 'Riho Yamashita',  role: 'UI/UX Designer' }
+            ]}
         };
 
-        var desktop  = document.getElementById('desktop');
-        var stage    = document.getElementById('panel-stage');
-        var bigEnough = window.matchMedia('(min-width: 1100px) and (min-height: 600px) and (hover: hover) and (pointer: fine)');
-        var popupZ   = 120;
-        var popupTimers = [];
-        var popupGen = 0;                       // bumps on every clear; stale image loads bail
+        var desktop   = document.getElementById('desktop');
+        var stage     = document.getElementById('panel-stage');
+        var player    = document.getElementById('player');
+        var pImg      = player.querySelector('.player-img');
+        var pBlocks   = player.querySelector('.player-blocks');
+        var pPlay     = player.querySelector('[data-act="play"]');
+        var bigEnough = window.matchMedia('(min-width: 1200px) and (min-height: 600px) and (hover: hover) and (pointer: fine)');
+        var GAP = 32, MAIN_W = 660, ICON_COL = 130;
+        var media = null, index = 0, timer = null;
 
-        function clearPopups() {
-            popupTimers.forEach(clearTimeout);
-            popupTimers = [];
-            popupGen++;
-            desktop.querySelectorAll('.popup').forEach(function (p) { p.remove(); });
+        // Main window slides left; player sits to its right, top-aligned.
+        function layoutPlayer() {
+            var vw = window.innerWidth;
+            var w  = Math.max(340, Math.min(460, vw - ICON_COL - MAIN_W - GAP - 24));
+            var x0 = Math.max(ICON_COL, (vw - (MAIN_W + GAP + w)) / 2);
+            stage.style.left = (x0 + MAIN_W / 2) + 'px';
+            player.style.width = w + 'px';
+            player.style.left  = (x0 + MAIN_W + GAP) + 'px';
+            player.style.top   = (window.innerHeight / 2 - stage.offsetHeight / 2) + 'px';
         }
 
-        function jitter(n) { return Math.round((Math.random() * 2 - 1) * n); }
-
-        // Slots hug the main window's sides so most of each pop-up sits in the
-        // dither gutter and the rest tucks behind the panel (never over text).
-        // Left slots stay below the desktop-icon column.
-        function slotPosition(i, w, h) {
-            var r  = stage.getBoundingClientRect();
-            var vw = window.innerWidth, vh = window.innerHeight;
-            var slots = [
-                { x: r.right - w * 0.3,  y: r.top - 24 },          // right, high
-                { x: r.left  - w * 0.7,  y: r.bottom - h + 30 },   // left, low
-                { x: r.right - w * 0.2,  y: r.bottom - h + 50 },   // right, low
-                { x: r.left  - w * 0.75, y: 300 }                  // left, under icons
-            ];
-            var s = slots[i % slots.length];
-            var x = Math.max(12, Math.min(vw - w - 12, s.x + jitter(20)));
-            var y = Math.max(12, Math.min(vh - h - 12, s.y + jitter(18)));
-            if (x < 120 && y < 280) y = 280;                        // keep icons clear
-            return { x: x, y: y };
-        }
-
-        function makeDraggable(win, bar) {
-            bar.addEventListener('pointerdown', function (e) {
-                if (e.target.classList.contains('popup-close')) return;
-                win.style.zIndex = ++popupZ;
-                var sx = e.clientX - win.offsetLeft, sy = e.clientY - win.offsetTop;
-                bar.setPointerCapture(e.pointerId);
-                function move(ev) {
-                    win.style.left = (ev.clientX - sx) + 'px';
-                    win.style.top  = (ev.clientY - sy) + 'px';
-                }
-                function up() {
-                    bar.removeEventListener('pointermove', move);
-                    bar.removeEventListener('pointerup', up);
-                }
-                bar.addEventListener('pointermove', move);
-                bar.addEventListener('pointerup', up);
-            });
-            win.addEventListener('pointerdown', function () { win.style.zIndex = ++popupZ; });
-        }
-
-        function spawnPopups(panelId) {
-            clearPopups();
-            if (!bigEnough.matches) return;
-            var gen = popupGen;
-            (POPUPS[panelId] || []).forEach(function (item, i) {
-                popupTimers.push(setTimeout(function () {
-                    var w = Math.round(item.w * (0.9 + Math.random() * 0.2));
-                    var img = new Image();
-                    img.alt = '';
-                    img.onload = function () {
-                        if (gen !== popupGen) return;
-                        var h = Math.round(w * img.naturalHeight / img.naturalWidth) + 28;
-                        var pos = slotPosition(i, w, h);
-                        var win = document.createElement('div');
-                        win.className = 'popup';
-                        win.setAttribute('aria-hidden', 'true');
-                        win.style.width = w + 'px';
-                        win.style.left  = pos.x + 'px';
-                        win.style.top   = pos.y + 'px';
-                        var bar = document.createElement('div');
-                        bar.className = 'popup-bar';
-                        bar.innerHTML = '<span class="popup-title"></span><span class="popup-close"></span>';
-                        bar.firstChild.textContent = item.title;
-                        bar.lastChild.addEventListener('click', function () { win.remove(); });
-                        win.appendChild(bar);
-                        win.appendChild(img);
-                        desktop.appendChild(win);
-                        makeDraggable(win, bar);
-                    };
-                    img.src = item.src;
-                }, 120 + i * 100));
+        function show(i) {
+            var items = media.items;
+            index = (i + items.length) % items.length;
+            var item = items[index];
+            pImg.src = item.src;
+            player.querySelector('.player-name').textContent    = item.name || '';
+            player.querySelector('.player-role').textContent    = item.role || '';
+            player.querySelector('.player-caption').textContent = item.caption || '';
+            player.querySelector('.player-count').textContent   = (index + 1) + ' / ' + items.length;
+            pBlocks.querySelectorAll('button').forEach(function (b, n) {
+                b.classList.toggle('is-current', n === index);
             });
         }
 
-        bigEnough.addEventListener('change', function (e) {
-            if (!e.matches) { clearPopups(); return; }
-            var active = document.querySelector('.tab.is-active');
-            if (active) spawnPopups(active.dataset.panel);
+        function stopPlay() {
+            clearInterval(timer); timer = null;
+            pPlay.setAttribute('aria-pressed', 'false');
+            pPlay.setAttribute('aria-label', 'Play slideshow');
+        }
+
+        function startPlay() {
+            stopPlay();
+            timer = setInterval(function () { show(index + 1); }, 3500);
+            pPlay.setAttribute('aria-pressed', 'true');
+            pPlay.setAttribute('aria-label', 'Pause slideshow');
+        }
+
+        function closePlayer() {
+            stopPlay();
+            player.hidden = true;
+            media = null;
+            stage.style.left = '';               // back to centered
+        }
+
+        function openPlayer(panelId) {
+            stopPlay();
+            media = MEDIA[panelId];
+            if (!media || !bigEnough.matches) { closePlayer(); return; }
+            player.querySelector('.player-title').textContent = media.title;
+            player.classList.toggle('is-portrait', !!media.portrait);
+            pBlocks.innerHTML = '';
+            media.items.forEach(function (item, n) {
+                var b = document.createElement('button');
+                b.setAttribute('aria-label', 'Show ' + (n + 1));
+                b.addEventListener('click', function () { show(n); if (timer) startPlay(); });
+                pBlocks.appendChild(b);
+            });
+            show(0);
+            layoutPlayer();
+            // Re-trigger the open animation on every tab switch
+            player.hidden = true; void player.offsetWidth; player.hidden = false;
+        }
+
+        player.querySelector('[data-act="prev"]').addEventListener('click', function () { show(index - 1); if (timer) startPlay(); });
+        player.querySelector('[data-act="next"]').addEventListener('click', function () { show(index + 1); if (timer) startPlay(); });
+        pPlay.addEventListener('click', function () { timer ? stopPlay() : startPlay(); });
+        player.querySelector('.player-close').addEventListener('click', closePlayer);
+
+        // Drag by the title bar
+        player.querySelector('.player-bar').addEventListener('pointerdown', function (e) {
+            if (e.target.closest('button')) return;
+            var bar = e.currentTarget;
+            var sx = e.clientX - player.offsetLeft, sy = e.clientY - player.offsetTop;
+            bar.setPointerCapture(e.pointerId);
+            function move(ev) {
+                player.style.left = (ev.clientX - sx) + 'px';
+                player.style.top  = (ev.clientY - sy) + 'px';
+            }
+            function up() {
+                bar.removeEventListener('pointermove', move);
+                bar.removeEventListener('pointerup', up);
+            }
+            bar.addEventListener('pointermove', move);
+            bar.addEventListener('pointerup', up);
         });
 
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') clearPopups();
+            if (player.hidden) return;
+            if (e.key === 'Escape')     closePlayer();
+            if (e.key === 'ArrowLeft')  { show(index - 1); if (timer) startPlay(); }
+            if (e.key === 'ArrowRight') { show(index + 1); if (timer) startPlay(); }
         });
+
+        bigEnough.addEventListener('change', function () {
+            var active = document.querySelector('.tab.is-active');
+            if (active) openPlayer(active.dataset.panel);
+        });
+        window.addEventListener('resize', function () { if (!player.hidden) layoutPlayer(); });
 
         // Reset every panel's scroll on page open so reloads land at the top
         contents.forEach(function (c) { c.scrollTop = 0; });
