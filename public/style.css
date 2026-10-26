@@ -547,6 +547,19 @@ a.info-val:hover {
     margin-top: 0;
 }
 
+/* Inverted pill for awards/accolades — our own type, not store artwork */
+.award-tag {
+    display:        inline-block;
+    background:     var(--black);
+    color:          var(--white);
+    font-family:    var(--font-crt);
+    font-weight:    700;
+    font-size:      11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding:        3px 8px;
+}
+
 .about-text a {
     color:            var(--black);
     text-decoration:  underline;
