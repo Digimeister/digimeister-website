@@ -220,9 +220,9 @@ body {
     justify-content: center;
 }
 
-/* Pixel wordmark: 134x18 art at 4x; 2x on phones */
+/* Pixel wordmark: 257x34 art at 2x like the sprites; 1x on phones */
 .logo {
-    width:           536px;
+    width:           514px;
     max-width:       100%;
     height:          auto;
     display:         block;
@@ -710,7 +710,7 @@ a.info-val:hover {
         margin-bottom: 28px;
     }
 
-    .logo { width: 268px; }
+    .logo { width: 257px; }
 
     .win-body { padding: 18px 14px; gap: 14px; }
 
