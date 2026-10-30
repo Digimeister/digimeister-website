@@ -67,32 +67,16 @@
                     <div class="logo-wrap">
                         <img src="logo.svg" alt="Digimeister" class="logo">
                     </div>
-                    <div class="info-block" aria-label="Studio profile">
-                        <div class="info-row info-row--spec">
-                            <span class="info-key" aria-label="Focus"><img src="icons/icon_20_14.png" alt="Focus"></span>
-                            <span class="spec-val">ONLINE GAMES · MOBILE APPS · CO-DEV</span>
-                        </div>
-                        <div class="info-row info-row--spec">
-                            <span class="info-key" aria-label="Base location"><img src="icons/icon_07_00.png" alt="Location"></span>
-                            <span class="spec-val">FUKUOKA, JAPAN</span>
-                        </div>
+                    <p class="home-pitch">We make and port games<br>for PC, console and mobile,<br>with other studios and on our own.</p>
+                    <p class="home-pitch">Online is our focus.</p>
+                    <p class="home-place">Fukuoka, Japan</p>
+                    <div class="home-mail">
+                        <a href="mailto:hello@digimeister.co.jp">hello@digimeister.co.jp</a>
+                        <button class="copy-btn" data-copy="hello@digimeister.co.jp" aria-label="Copy email">Copy</button>
                     </div>
-
-                    <div class="info-block" aria-label="Contact information">
-                        <div class="info-row">
-                            <span class="info-key" aria-label="Email"><img src="icons/icon_06_10.png" alt="Email"></span>
-                            <a class="info-val" href="mailto:hello@digimeister.co.jp">hello@digimeister.co.jp</a>
-                            <button class="copy-btn" data-copy="hello@digimeister.co.jp" aria-label="Copy email">⧉</button>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-key" aria-label="Phone"><img src="icons/icon_08_15.png" alt="Phone"></span>
-                            <a class="info-val" href="tel:+819064281601">+81 90 6428 1601</a>
-                            <button class="copy-btn" data-copy="+81 90 6428 1601" aria-label="Copy phone">⧉</button>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-key" aria-label="LinkedIn"><img src="linkedin.png" alt="LinkedIn"></span>
-                            <a class="info-val" href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                        </div>
+                    <div class="home-small">
+                        <a href="tel:+819064281601">+81 90 6428 1601</a>
+                        <a href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     </div>
                 </div>
 
@@ -202,8 +186,8 @@
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 navigator.clipboard.writeText(btn.dataset.copy).then(function () {
-                    btn.textContent = '✓';
-                    setTimeout(function () { btn.textContent = '⧉'; }, 1400);
+                    btn.textContent = 'Copied';
+                    setTimeout(function () { btn.textContent = 'Copy'; }, 1400);
                 });
             });
         });

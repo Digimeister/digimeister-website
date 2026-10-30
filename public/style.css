@@ -221,185 +221,103 @@ body {
 }
 
 .logo {
-    width:     204px;     /* 6 screen pixels per robot pixel */
+    width:     272px;     /* 8 screen pixels per robot pixel */
     max-width: 100%;
     height:    auto;
     display:   block;
 }
 
-.tagline {
-    font-family:    var(--font);
-    font-size:      11px;
-    font-weight:    bold;
-    letter-spacing: 6px;
-    color:          var(--black);
-    text-align:     center;
-    text-transform: uppercase;
-}
-
-/* ---- Info Block ---- */
-
-.info-block {
-    width:  100%;
-    border: var(--border);
-}
-
-.info-row {
-    display:       flex;
-    align-items:   center;
-    padding:       9px 14px;
-    gap:           10px;
-    border-bottom: 1px solid var(--black);
-}
-
-.info-row:last-child {
-    border-bottom: none;
-}
-
 /* =============================================
-   HOME TAB — typography + vertical rhythm
+   HOME TAB  ·  logo, one sentence, contact
    ============================================= */
-
-#content-home .spec-val,
-#content-home .info-val {
-    font-family:    var(--font-crt);
-    font-size:      13px;
-    font-weight:    500;
-    letter-spacing: 0;
-    line-height:    1.2;
-    margin-left:    4px;     /* nudge text right of the icon column */
-}
 
 /* Replace .win-body's uniform gap with explicit per-section margins */
 #content-home {
     gap: 0;
 }
 
-/* Manual composition nudge inside the centered 500px panel — not compensating
-   for SVG padding (logo.svg viewBox is already tight to the letterforms). */
 #content-home .logo-wrap {
-    margin-top:    6px;
     margin-bottom: 26px;
 }
 
-#content-home .info-block + .info-block {
-    margin-top: 12px;        /* tighter rhythm: info1 → info2 */
-}
-
-/* ---- Spec rows (studio profile data) ---- */
-
-.spec-key {
-    width:          100px;
-    flex-shrink:    0;
-    font-family:    var(--font);
-    font-weight:    bold;
-    font-size:      10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color:          var(--black);
-}
-
-.spec-val {
-    flex:           1;
-    font-family:    var(--font);
-    font-size:      11px;
-    color:          var(--black);
-    display:        flex;
-    align-items:    center;
-    letter-spacing: 0.5px;
-}
-
-.status-dot {
-    display:      inline-block;
-    width:        8px;
-    height:       8px;
-    background:   var(--black);
-    margin-right: 8px;
-    flex-shrink:  0;
-    animation:    pulse 2.2s ease-in-out infinite;
-}
-
-
-.info-key {
-    width:       40px;
-    flex-shrink: 0;
-    font-size:   15px;
-    line-height: 1;
-    display:     flex;
-    align-items: center;
-    justify-content: center;
-    color:       var(--black);
-}
-
-/* Pixel-art icons displayed at 2× native (18→36) so each source pixel maps
-   to a clean 2×2 block — crisp on any DPI, no interpolation artefacts */
-.info-key img {
-    width:           36px;
-    height:          36px;
-    display:         block;
-    image-rendering: pixelated;
-}
-
-/* SVG icons (LinkedIn) — render smoothly, same display size */
-.info-key img[src$=".svg"] {
-    image-rendering: auto;
-}
-
-.info-val {
-    font-family:     var(--font);
-    font-size:       12px;
-    color:           var(--black);
-    text-decoration: none;
-    align-self:      stretch;
-    display:         flex;
-    align-items:     center;
-    user-select:     text;
+.home-pitch {
+    font-family: var(--font-crt);
+    font-size:   14px;
+    line-height: 1.5;
+    text-align:  center;
+    max-width:   36ch;
+    user-select: text;
     -webkit-user-select: text;
-    cursor:          text;
 }
 
-a.info-val {
-    cursor: pointer;
+.home-pitch + .home-pitch {
+    margin-top: 2px;
 }
 
-a.info-val {
-    text-decoration: underline;
+.home-place {
+    font-family:   var(--font-crt);
+    font-size:     12px;
+    text-align:    center;
+    margin-top:    8px;
+    margin-bottom: 28px;
 }
 
-a.info-val:hover {
+/* Email: the one big way to get in touch, with a copy button beside it */
+.home-mail {
+    display:       flex;
+    align-items:   stretch;
+    border:        var(--border);
+    margin-bottom: 14px;
+}
+
+.home-mail a {
+    padding:         10px 16px;
+    font-family:     var(--font-crt);
+    font-size:       14px;
+    font-weight:     700;
+    color:           var(--black);
     text-decoration: none;
 }
 
 .copy-btn {
-    flex-shrink:     0;
-    width:           22px;
-    height:          22px;
-    background:      transparent;
-    border:          1px solid var(--black);
-    color:           var(--black);
-    font-size:       12px;
-    font-family:     var(--font);
-    cursor:          pointer;
-    display:         flex;
-    align-items:     center;
-    justify-content: center;
-    padding:         0;
-    user-select:     none;
-    -webkit-user-select: none;
+    padding:     0 12px;
+    border:      none;
+    border-left: var(--border);
+    background:  var(--white);
+    color:       var(--black);
+    font-family: var(--font-crt);
+    font-size:   12px;
+    font-weight: 700;
+    cursor:      pointer;
 }
 
-.copy-btn {
-    opacity: 0;
-    pointer-events: none;
+.home-mail a:hover,
+.home-mail a:focus-visible,
+.copy-btn:hover,
+.copy-btn:focus-visible {
+    background: var(--black);
+    color:      var(--white);
+    outline:    none;
 }
 
-.info-row:hover .copy-btn {
-    opacity: 1;
-    pointer-events: auto;
+/* Phone and LinkedIn: small, under the email */
+.home-small {
+    display:     flex;
+    gap:         20px;
+    font-family: var(--font-crt);
+    font-size:   12px;
 }
 
-.copy-btn:hover  { background: var(--black); color: var(--white); }
-.copy-btn:active { opacity: 0.7; }
+.home-small a {
+    color: var(--black);
+    text-underline-offset: 2px;
+}
+
+.home-small a:hover {
+    background:      var(--black);
+    color:           var(--white);
+    text-decoration: none;
+}
 
 
 
@@ -704,8 +622,7 @@ a.info-val:hover {
     }
 
     #content-home .logo-wrap {
-        margin-top:    4px;
-        margin-bottom: 20px;
+        margin-bottom: 22px;
     }
 
     .win-body { padding: 18px 14px; gap: 14px; }
@@ -714,7 +631,6 @@ a.info-val:hover {
 
     /* Meta drops under the title when the row gets tight */
     .about-label { flex-direction: column; gap: 2px; }
-    .tagline  { font-size: 9px; letter-spacing: 4px; }
 }
 
 /* Short viewports — phone landscape, etc. Width may be > 560px so the
