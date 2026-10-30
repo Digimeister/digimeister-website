@@ -221,7 +221,7 @@ body {
 }
 
 .logo {
-    width:     500px;
+    width:     204px;     /* 6 screen pixels per robot pixel */
     max-width: 100%;
     height:    auto;
     display:   block;
@@ -278,8 +278,8 @@ body {
 /* Manual composition nudge inside the centered 500px panel — not compensating
    for SVG padding (logo.svg viewBox is already tight to the letterforms). */
 #content-home .logo-wrap {
-    margin-top:    29px;
-    margin-bottom: 45px;
+    margin-top:    6px;
+    margin-bottom: 26px;
 }
 
 #content-home .info-block + .info-block {
@@ -704,8 +704,8 @@ a.info-val:hover {
     }
 
     #content-home .logo-wrap {
-        margin-top:    12px;
-        margin-bottom: 28px;
+        margin-top:    4px;
+        margin-bottom: 20px;
     }
 
     .win-body { padding: 18px 14px; gap: 14px; }
