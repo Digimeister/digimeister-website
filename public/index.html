@@ -53,6 +53,11 @@
                     <div class="tab" role="tab" data-panel="content-games">GAMES</div>
                     <div class="tab" role="tab" data-panel="content-team">TEAM</div>
                 </div>
+                <div class="lang-switch" role="group" data-i18n-aria-label="lang.label" aria-label="Language">
+                    <button class="lang-btn" type="button" data-lang="en" lang="en">EN</button>
+                    <span class="lang-sep" aria-hidden="true">/</span>
+                    <button class="lang-btn" type="button" data-lang="ja" lang="ja">JA</button>
+                </div>
                 <div class="title-controls" aria-hidden="true">
                     <span class="ctrl-btn"></span>
                     <span class="ctrl-btn"></span>
@@ -96,7 +101,7 @@
                 </div>
 
                 <div class="win-body" id="content-about">
-                    <div class="about-text">
+                    <div class="about-text" id="about-content">
                         <p class="about-label">▸ ABOUT DIGIMEISTER</p>
                         <p>Digimeister makes online games: multiplayer and social, the kind that only work because other players are in them. Founded in Fukuoka, Japan in 2022, all-in on online since 2024.</p>
                         <p class="about-label">▸ WHAT WE DO</p>
@@ -108,20 +113,20 @@
 
                 <div class="win-body" id="content-games">
                     <div class="about-text">
-                        <p class="about-label">▸ MOONRANGERS — In Development</p>
-                        <p>The moon shattered and humanity went underground. You go out. A top-down survival game about hauling cargo and building roads other players use, while the wasteland tries to kill you.</p>
+                        <p class="about-label">▸ MOONRANGERS — <span data-i18n="games.status">In Development</span></p>
+                        <p data-i18n="games.p">The moon shattered and humanity went underground. You go out. A top-down survival game about hauling cargo and building roads other players use, while the wasteland tries to kill you.</p>
                         <p><a href="https://playmoonrangers.com/" target="_blank" rel="noopener noreferrer">playmoonrangers.com →</a></p>
                     </div>
                 </div>
 
                 <div class="win-body" id="content-team">
                     <div class="about-text">
-                        <p class="about-label">▸ JAN STROETMANN — Founder</p>
-                        <p>Shipped games for over a decade. Credits include The Stanley Parable and work at Crows Crows Crows. Started Digimeister to build multiplayer.</p>
-                        <p class="about-label">▸ LUKE JONES — Programmer</p>
-                        <p>Unity Developer. Handles network code and gameplay systems.</p>
-                        <p class="about-label">▸ RIHO YAMASHITA — UI/UX Designer</p>
-                        <p>UI/UX Designer. Takes interfaces from design to implementation.</p>
+                        <p class="about-label">▸ JAN — Founder</p>
+                        <p data-i18n="team.jan.p">Shipped games for over a decade. Credits include The Stanley Parable and work at Crows Crows Crows. Started Digimeister to build multiplayer.</p>
+                        <p class="about-label">▸ LUKE — Programmer</p>
+                        <p data-i18n="team.luke.p">Unity Developer. Handles network code and gameplay systems.</p>
+                        <p class="about-label">▸ RIHO — UI/UX Designer</p>
+                        <p data-i18n="team.riho.p">UI/UX Designer. Takes interfaces from design to implementation.</p>
                     </div>
                 </div>
 
@@ -138,6 +143,98 @@
             document.fonts.load('400 15px "Source Sans 3"');
             document.fonts.load('700 15px "Source Sans 3"');
         }
+
+        // ---- Language switch (EN / JA) ----
+        // NOTE: tabs (HOME/ABOUT/GAMES/TEAM) and everything shown on the HOME
+        // tab (studio profile + contact info) stay English in both languages,
+        // so they carry no data-i18n attributes.
+        var I18N = {
+            en: {
+                'lang.label':      'Language',
+                'games.status':    'In Development',
+                'games.p':       'The moon shattered and humanity went underground. You go out. A top-down survival game about hauling cargo and building roads other players use, while the wasteland tries to kill you.',
+                'team.jan.p':      'Shipped games for over a decade. Credits include The Stanley Parable and work at Crows Crows Crows. Started Digimeister to build multiplayer.',
+                'team.luke.p':     'Unity Developer. Handles network code and gameplay systems.',
+                'team.riho.p':     'UI/UX Designer. Takes interfaces from design to implementation.'
+            },
+            ja: {
+                'lang.label':      '言語',
+                'games.status':    '開発中',
+                'games.p':       '月が砕け、人類が地下へと避難するなか、君は地上へと上がる。\n荒廃した大地を越えて貨物を運び、他のプレイヤーとも繋がる道を切り拓いていくトップダウン視点のサバイバルゲーム。',
+                'team.jan.p':      'ゲーム開発歴10年以上。『The Stanley Parable』やCrows Crows Crowsでの制作に携わる。マルチプレイヤーゲーム開発のためDigimeisterを設立。',
+                'team.luke.p':     'Unityエンジニア。ネットコードやゲームプレイシステムを担当。',
+                'team.riho.p':     'インターフェース設計から実装までを担当。'
+            }
+        };
+
+        // ABOUT is structured differently per language (EN: 3 labeled sections;
+        // JA: one unlabeled block), so it's swapped as a full HTML block
+        // rather than through the generic data-i18n text-replace below.
+        var ABOUT_HTML = {
+            en:
+                '<p class="about-label">▸ ABOUT DIGIMEISTER</p>' +
+                '<p>Digimeister makes online games: multiplayer and social, the kind that only work because other players are in them. Founded in Fukuoka, Japan in 2022, all-in on online since 2024.</p>' +
+                '<p class="about-label">▸ WHAT WE DO</p>' +
+                '<p>For studios shipping online, the studio handles co-dev and programming. Netcode, matchmaking, live systems. We ship our own games too, so we know what it takes.</p>' +
+                '<p class="about-label">▸ LET\'S BUILD SOMETHING</p>' +
+                '<p>Publishers, studios, developers: if online is in the brief, get in touch.</p>',
+            ja:
+                '<p>Digimeisterは、自社ゲームの企画・開発と、アプリやゲームの共同開発に取り組むスタジオです。2022年に福岡で設立し、2024年からはオンラインゲーム開発に力を入れています。</p>' +
+                '<p>ネットコードやマッチメイキングなど、マルチプレイに欠かせない仕組みづくりが得意です。</p>' +
+                '<p>共同開発のご依頼やオンライン関連のご相談など、どうぞお気軽にお問い合わせください。</p>'
+        };
+
+        var LANG_STORAGE_KEY = 'digimeister-lang';
+
+        function detectLang() {
+            try {
+                var saved = localStorage.getItem(LANG_STORAGE_KEY);
+                if (saved && I18N[saved]) { return saved; }
+            } catch (e) { /* storage unavailable */ }
+
+            var langs = navigator.languages || [navigator.language || ''];
+            for (var i = 0; i < langs.length; i++) {
+                if (/^ja\b/i.test(langs[i])) { return 'ja'; }
+            }
+            return 'en';
+        }
+
+        function setLang(lang) {
+            var dict = I18N[lang] || I18N.en;
+
+            // Browser tab title stays "Digimeister | video game developer" in both languages.
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(function (el) {
+                var value = dict[el.dataset.i18n];
+                if (value) { el.textContent = value; }
+            });
+
+            document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+                var value = dict[el.dataset.i18nAriaLabel];
+                if (value) { el.setAttribute('aria-label', value); }
+            });
+
+            var aboutEl = document.getElementById('about-content');
+            if (aboutEl) { aboutEl.innerHTML = ABOUT_HTML[lang] || ABOUT_HTML.en; }
+
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                var active = btn.dataset.lang === lang;
+                btn.classList.toggle('is-active', active);
+                btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+
+            try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (e) { /* storage unavailable */ }
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                setLang(btn.dataset.lang);
+            });
+        });
+
+        setLang(detectLang());
 
         var tabs     = document.querySelectorAll('.tab');
         var contents = document.querySelectorAll('.panel-area .win-body');

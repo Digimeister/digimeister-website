@@ -183,6 +183,53 @@ body {
     align-self:     center;
 }
 
+/* ---- Language Switch (EN / JA) ---- */
+
+.lang-switch {
+    display:      flex;
+    align-items:  center;
+    gap:          4px;
+    flex-shrink:  0;
+    align-self:   center;
+    margin-right: 14px;
+}
+
+.lang-btn {
+    background:     transparent;
+    border:         1px solid var(--white);
+    color:          var(--white);
+    font-family:    var(--font);
+    font-size:      10px;
+    font-weight:    bold;
+    letter-spacing: 1px;
+    line-height:    1;
+    padding:        3px 5px;
+    cursor:         pointer;
+    user-select:    none;
+    -webkit-user-select: none;
+}
+
+.lang-btn:hover {
+    background: #1f1f1f;
+}
+
+.lang-btn.is-active {
+    background: var(--white);
+    color:      var(--black);
+    cursor:     default;
+}
+
+.lang-btn:active {
+    opacity: 0.7;
+}
+
+.lang-sep {
+    color:       rgba(255, 255, 255, 0.4);
+    font-family: var(--font);
+    font-size:   10px;
+    line-height: 1;
+}
+
 /* Decorative-only window controls */
 .title-controls {
     display:     flex;
@@ -530,6 +577,19 @@ a.info-val:hover {
     cursor:         text;
 }
 
+/* Preserve explicit \n line breaks within copy (e.g. JA Moonrangers blurb)
+   while still collapsing normal whitespace and wrapping as usual. */
+.about-text p {
+    white-space: pre-line;
+}
+
+/* Japanese body copy reads larger than Latin text at the same size, so
+   trim it down a notch to match the visual weight of the English copy. */
+html[lang="ja"] .about-text {
+    font-size:   14px;
+    line-height: 1.85;
+}
+
 /* Section headers — JetBrains Mono, rhymes with HOME's data labels */
 .about-label {
     font-family:    var(--font-crt);
@@ -593,6 +653,10 @@ a.info-val:hover {
     /* Tabs: bigger tap targets, scroll horizontally if they overflow */
     .tab-strip   { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; }
     .tab         { padding: 0 14px; font-size: 11px; letter-spacing: 1.5px; }
+
+    /* Lang switch stays put (title-controls is gone, so it owns the right edge) */
+    .lang-switch { margin-right: 10px; }
+    .lang-btn    { padding: 4px 6px; font-size: 11px; }
 
     /* Window stays a fixed, sensible size — dither breathes around it */
     .panel-area {
