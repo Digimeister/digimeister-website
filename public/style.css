@@ -222,6 +222,7 @@ a { color: inherit; }
 
 .site-header__logo {
   display: block;
+  flex: none;
   margin-left: -4px;
   padding: 4px;
   border-radius: 6px;
@@ -278,6 +279,7 @@ a { color: inherit; }
   padding-bottom: clamp(64px, 8vw, 112px);
 }
 
+.hero__stacked { display: none; }
 .hero__lockup {
   width: 100%;
   height: auto;
@@ -647,8 +649,9 @@ a { color: inherit; }
 
 @media (max-width: 720px) {
   :root { --header-h: 60px; --fs-body: 16px; }
+  .site-header__row { gap: 12px; }
   .logo-lockup { display: none; }
-  .logo-mark { display: block; }
+  .logo-mark { display: block; height: 28px; }
   .site-nav { gap: 18px; }
 
   .port {
@@ -668,6 +671,7 @@ a { color: inherit; }
   .port.is-linked .port__link { transform: scaleY(1); }
   .project__foot .link { margin-left: 0; }
 
+  .section__title { font-size: 28px; margin-bottom: 32px; }
   .game__name, .game__text { grid-column: 1 / -1; }
 
   .people { grid-template-columns: 1fr; }
@@ -677,9 +681,25 @@ a { color: inherit; }
   .site-footer__copy { margin-left: 0; }
 }
 
-@media (max-width: 380px) {
+/* Phones: the stacked lockup gives the hero its weight back */
+@media (max-width: 600px) {
+  .hero__lockup { display: none; }
+  .hero__stacked {
+    display: block;
+    width: min(100%, 320px);
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
   .site-nav { gap: 14px; }
   .site-nav a { letter-spacing: .08em; }
+}
+
+@media (max-width: 359px) {
+  .site-nav { gap: 11px; }
+  .site-nav a { letter-spacing: .05em; font-size: 11px; }
+  .logo-mark { height: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
