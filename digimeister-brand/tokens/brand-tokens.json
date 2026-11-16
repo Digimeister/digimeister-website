@@ -1,0 +1,81 @@
+{
+  "color": {
+    "ink": {
+      "value": "#15171A",
+      "use": "Logo bodies, body text, primary buttons, dark surfaces"
+    },
+    "paper": {
+      "value": "#F6F5F2",
+      "use": "Logo screens, page background, text on dark"
+    },
+    "signal": {
+      "value": "#FFC01E",
+      "use": "Logo cable and plugs, accents, underlines, focus rings, fills behind Ink text. Never as text on light (1.5:1)"
+    },
+    "surface": {
+      "value": "#FBFAF8",
+      "use": "Cards and raised panels on Paper"
+    },
+    "line": {
+      "value": "#DDDBD5",
+      "use": "Borders and dividers on Paper"
+    },
+    "muted": {
+      "value": "#6B6E73",
+      "use": "Secondary text on Paper (4.7:1)"
+    },
+    "muted-on-dark": {
+      "value": "#A9ACB2",
+      "use": "Secondary text on Ink (7.9:1)"
+    },
+    "signal-text": {
+      "value": "#8A6A12",
+      "use": "Gold text on Paper when Signal is wanted as text (4.6:1, AA)"
+    },
+    "port-blue": {
+      "value": "#4789FF",
+      "use": "Optional link/UI blue; not in the logo"
+    },
+    "port-blue-text": {
+      "value": "#2563D9",
+      "use": "Port Blue as text on Paper (5.0:1)"
+    }
+  },
+  "font": {
+    "display": {
+      "family": "Rubik",
+      "weights": [
+        500,
+        800
+      ],
+      "source": "https://fonts.googleapis.com/css2?family=Rubik:wght@500;800&family=Inter:wght@400;500;600&display=swap",
+      "use": "800: wordmark and headings · 500: uppercase slogans and labels"
+    },
+    "text": {
+      "family": "Inter",
+      "weights": [
+        400,
+        500,
+        600
+      ],
+      "source": "https://fonts.googleapis.com/css2?family=Rubik:wght@500;800&family=Inter:wght@400;500;600&display=swap",
+      "use": "Body copy, navigation, UI"
+    }
+  },
+  "logo": {
+    "wordmark": "DIGIMEISTER in Rubik 800, uppercase, tracking 0.03em (0.05em below 48 px tall)",
+    "clearSpace": "52 mark units = 10.4% of the mark's width / 20.8% of its height, on all sides",
+    "minimum": {
+      "mark": "20 px",
+      "horizontalLockup": "24 px tall",
+      "stackedLockup": "84 px tall",
+      "icon": "16 px"
+    },
+    "smallBuildBelow": "48 px tall (mark) / 96 px (icon)"
+  },
+  "radius": {
+    "button": "10px",
+    "card": "14px",
+    "appIcon": "22.5%"
+  }
+}

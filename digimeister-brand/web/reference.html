@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digimeister — logo in use (reference)</title>
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../tokens/brand-tokens.css">
+<style>
+/* logo classes used by the inline SVGs */
+.dm-logo .ink{fill:var(--ink)} .dm-logo .pap{fill:var(--paper)} .dm-logo .paps{stroke:var(--paper)}
+.dm-logo .inks{stroke:var(--ink)} .dm-logo .cab{stroke:var(--cable)} .dm-logo .cabf{fill:var(--cable)}
+body{margin:0;background:var(--dm-paper);color:var(--dm-ink);font-family:var(--dm-font-text)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--dm-line);background:var(--dm-surface)}
+header .wrap{display:flex;align-items:center;gap:24px;min-height:76px}
+nav{margin-left:auto;display:flex;gap:28px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+nav a{color:var(--dm-ink);text-decoration:none;padding-bottom:3px;border-bottom:2px solid transparent}
+nav a[aria-current="page"],nav a:hover{border-bottom-color:var(--dm-signal)}
+a:focus-visible{outline:3px solid var(--dm-signal);outline-offset:3px;border-radius:2px}
+.hero{padding:72px 0 80px}
+.hero h1{font-family:var(--dm-font-display);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1.12;max-width:760px;margin:0 0 28px}
+.btn{display:inline-block;padding:13px 20px;border-radius:var(--dm-radius-button);background:var(--dm-ink);color:var(--dm-paper);
+  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.btn.signal{background:var(--dm-signal);color:var(--dm-ink)}
+.band{background:var(--dm-signal);padding:48px 0}
+footer{background:var(--dm-ink);color:var(--dm-paper)}
+footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:88px;flex-wrap:wrap}
+footer small{color:var(--dm-muted-on-dark);font-size:12px}
+@media (max-width:720px){nav{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a href="#" aria-label="Digimeister home"><svg class="dm-logo " viewBox="-10 0 1576 250" role="img" aria-label="Digimeister" style="height:36px;width:auto;display:block;overflow:visible"><rect class="ink" x="54" y="198" width="52" height="29" rx="8"/><rect class="ink" x="142" y="198" width="52" height="29" rx="8"/><rect class="ink" x="326" y="198" width="52" height="29" rx="8"/><rect class="ink" x="414" y="198" width="52" height="29" rx="8"/><path class="cab" d="M214.4 125.06C238.4 123.81 236 151.75 260 151.75C284 151.75 281.6 123.81 305.6 125.06" fill="none" stroke-width="20" stroke-linecap="round"/><g transform="rotate(-3 120 120)"><rect class="ink" x="20" y="30" width="200" height="180" rx="26"/><rect class="pap" x="50" y="50" width="140" height="76" rx="10"/><rect class="ink" x="90" y="73" width="18" height="30" rx="7"/><rect class="ink" x="144" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M72 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="148" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M214 116L214 144Q214 148 218 148A18 18 0 0 0 218 112Q214 112 214 116Z"/></g><g transform="rotate(3 400 120)"><rect class="ink" x="300" y="30" width="200" height="180" rx="26"/><rect class="pap" x="330" y="50" width="140" height="76" rx="10"/><rect class="ink" x="358" y="73" width="18" height="30" rx="7"/><rect class="ink" x="412" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M352 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="428" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M306 116L306 144Q306 148 302 148A18 18 0 0 1 302 112Q306 112 306 116Z"/></g><text x="556.0" y="176.0" font-family="Rubik, sans-serif" font-weight="800" font-size="142.86" letter-spacing="7.14" fill="var(--ink)" text-anchor="start">DIGIMEISTER</text></svg></a>
+  <nav aria-label="Site"><a href="#" aria-current="page">Home</a><a href="#">About</a><a href="#">Co-dev</a><a href="#">Games</a><a href="#">Team</a></nav>
+</div></header>
+<main>
+  <section class="hero"><div class="wrap">
+    <h1>Placeholder headline set in Rubik 800.</h1>
+    <a class="btn" href="#">Primary action</a> &nbsp; <a class="btn signal" href="#">Signal action</a>
+  </div></section>
+  <section class="band dm-on-signal"><div class="wrap" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+    <svg class="dm-logo " viewBox="-10 0 540 319" role="img" aria-label="Digimeister" style="height:150px;width:auto;display:block;overflow:visible"><rect class="ink" x="54" y="198" width="52" height="29" rx="8"/><rect class="ink" x="142" y="198" width="52" height="29" rx="8"/><rect class="ink" x="326" y="198" width="52" height="29" rx="8"/><rect class="ink" x="414" y="198" width="52" height="29" rx="8"/><path class="cab" d="M214.4 125.06C238.4 123.81 236 151.75 260 151.75C284 151.75 281.6 123.81 305.6 125.06" fill="none" stroke-width="16" stroke-linecap="round"/><g transform="rotate(-3 120 120)"><rect class="ink" x="20" y="30" width="200" height="180" rx="26"/><rect class="pap" x="50" y="50" width="140" height="76" rx="10"/><rect class="ink" x="92" y="64" width="14" height="24" rx="5"/><rect class="ink" x="146" y="64" width="14" height="24" rx="5"/><path class="inks" d="M109 102v4a8 8 0 0 0 8 8h12a8 8 0 0 0 8-8v-4" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path class="pap paps" d="M72 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="4" stroke-linejoin="round"/><rect class="pap" x="148" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M214 116L214 144Q214 148 218 148A18 18 0 0 0 218 112Q214 112 214 116Z"/></g><g transform="rotate(3 400 120)"><rect class="ink" x="300" y="30" width="200" height="180" rx="26"/><rect class="pap" x="330" y="50" width="140" height="76" rx="10"/><rect class="ink" x="360" y="64" width="14" height="24" rx="5"/><rect class="ink" x="414" y="64" width="14" height="24" rx="5"/><path class="inks" d="M383 102v4a8 8 0 0 0 8 8h12a8 8 0 0 0 8-8v-4" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path class="pap paps" d="M352 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="4" stroke-linejoin="round"/><rect class="pap" x="428" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M306 116L306 144Q306 148 302 148A18 18 0 0 1 302 112Q306 112 306 116Z"/></g><text x="260.0" y="308.9" font-family="Rubik, sans-serif" font-weight="800" font-size="68.39" letter-spacing="4.10" fill="var(--ink)" text-anchor="middle" textLength="476.0" lengthAdjust="spacing">DIGIMEISTER</text></svg>
+    <p style="font-family:var(--dm-font-display);font-weight:500;text-transform:uppercase;letter-spacing:.22em;font-size:13px;margin:0">On a Signal field: Ink cable, Signal screens</p>
+  </div></section>
+</main>
+<footer class="dm-dark"><div class="wrap">
+  <svg class="dm-logo " viewBox="-10 0 1576 250" role="img" aria-label="Digimeister" style="height:32px;width:auto;display:block;overflow:visible"><rect class="ink" x="54" y="198" width="52" height="29" rx="8"/><rect class="ink" x="142" y="198" width="52" height="29" rx="8"/><rect class="ink" x="326" y="198" width="52" height="29" rx="8"/><rect class="ink" x="414" y="198" width="52" height="29" rx="8"/><path class="cab" d="M214.4 125.06C238.4 123.81 236 151.75 260 151.75C284 151.75 281.6 123.81 305.6 125.06" fill="none" stroke-width="20" stroke-linecap="round"/><g transform="rotate(-3 120 120)"><rect class="ink" x="20" y="30" width="200" height="180" rx="26"/><rect class="pap" x="50" y="50" width="140" height="76" rx="10"/><rect class="ink" x="90" y="73" width="18" height="30" rx="7"/><rect class="ink" x="144" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M72 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="148" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M214 116L214 144Q214 148 218 148A18 18 0 0 0 218 112Q214 112 214 116Z"/></g><g transform="rotate(3 400 120)"><rect class="ink" x="300" y="30" width="200" height="180" rx="26"/><rect class="pap" x="330" y="50" width="140" height="76" rx="10"/><rect class="ink" x="358" y="73" width="18" height="30" rx="7"/><rect class="ink" x="412" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M352 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="428" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M306 116L306 144Q306 148 302 148A18 18 0 0 1 302 112Q306 112 306 116Z"/></g><text x="556.0" y="176.0" font-family="Rubik, sans-serif" font-weight="800" font-size="142.86" letter-spacing="7.14" fill="var(--ink)" text-anchor="start">DIGIMEISTER</text></svg>
+  <small>Footer copy placeholder</small>
+</div></footer>
+</body>
+</html>
