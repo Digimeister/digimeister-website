@@ -1,197 +1,289 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <title>Digimeister | Game studio in Fukuoka</title>
-    <meta name="description" content="Digimeister is a game studio in Fukuoka, Japan, founded in 2022. We make and port games for PC, console and mobile, with other studios and on our own.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Digimeister | Game studio in Fukuoka</title>
+<meta name="description" content="Digimeister is a game studio in Fukuoka, Japan, founded in 2022. We make and port games for PC, console and mobile, with other studios and on our own.">
+<meta name="theme-color" content="#F6F5F2">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Digimeister">
+<meta property="og:title" content="Digimeister | Game studio in Fukuoka">
+<meta property="og:description" content="We make and port games for PC, console and mobile, with other studios and on our own.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preload" href="fonts/rubik-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="brand-tokens.css">
+<link rel="stylesheet" href="style.css">
+<script>
+  // The logo wordmarks are live Rubik text: show them once Rubik has loaded (or after 3 s).
+  (function (d) {
+    d.classList.add('js');
+    var ready = function () { d.classList.add('fonts-ready'); };
+    setTimeout(ready, 3000);
+    if (document.fonts && document.fonts.load) document.fonts.load('800 1em Rubik').then(ready, ready);
+    else ready();
+  })(document.documentElement);
+</script>
 </head>
 <body>
 
-    <div class="desktop" id="desktop">
+<a class="skip-link" href="#main">Skip to content</a>
 
-        <nav class="desktop-icons" aria-label="Desktop">
-            <a class="desktop-icon" href="mailto:hello@digimeister.co.jp">
-                <div class="icon-box">
-                    <span class="icon-glyph icon-glyph--img" aria-hidden="true">
-                        <img src="icons-solid/icon_06_10.png" alt="">
-                    </span>
-                </div>
-                <span class="icon-label">Email</span>
-            </a>
-            <a class="desktop-icon" href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">
-                <div class="icon-box">
-                    <span class="icon-glyph icon-glyph--img" aria-hidden="true">
-                        <img src="linkedin_solid.png" alt="">
-                    </span>
-                </div>
-                <span class="icon-label">LinkedIn</span>
-            </a>
-            <a class="desktop-icon" href="https://playmoonrangers.com/" target="_blank" rel="noopener noreferrer">
-                <div class="icon-box">
-                    <span class="icon-glyph icon-glyph--img" aria-hidden="true">
-                        <img src="icons-solid/icon_00_18.png" alt="">
-                    </span>
-                </div>
-                <span class="icon-label">Moonrangers</span>
-            </a>
-        </nav>
+<header class="site-header" id="site-header">
+  <div class="wrap site-header__row">
+    <a class="site-header__logo" href="#top" aria-label="Digimeister home">
+      <svg class="dm-logo logo-lockup" viewBox="-10 0 1576 250" overflow="visible" focusable="false" aria-hidden="true"><rect class="ink" x="54" y="198" width="52" height="29" rx="8"/><rect class="ink" x="142" y="198" width="52" height="29" rx="8"/><rect class="ink" x="326" y="198" width="52" height="29" rx="8"/><rect class="ink" x="414" y="198" width="52" height="29" rx="8"/><path class="cab" d="M214.4 125.06C238.4 123.81 236 151.75 260 151.75C284 151.75 281.6 123.81 305.6 125.06" fill="none" stroke-width="20" stroke-linecap="round"/><g transform="rotate(-3 120 120)"><rect class="ink" x="20" y="30" width="200" height="180" rx="26"/><rect class="pap" x="50" y="50" width="140" height="76" rx="10"/><rect class="ink" x="90" y="73" width="18" height="30" rx="7"/><rect class="ink" x="144" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M72 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="148" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M214 116L214 144Q214 148 218 148A18 18 0 0 0 218 112Q214 112 214 116Z"/></g><g transform="rotate(3 400 120)"><rect class="ink" x="300" y="30" width="200" height="180" rx="26"/><rect class="pap" x="330" y="50" width="140" height="76" rx="10"/><rect class="ink" x="358" y="73" width="18" height="30" rx="7"/><rect class="ink" x="412" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M352 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="428" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M306 116L306 144Q306 148 302 148A18 18 0 0 1 302 112Q306 112 306 116Z"/></g><text x="556.0" y="176.0" font-family="Rubik, sans-serif" font-weight="800" font-size="142.86" letter-spacing="7.14" fill="var(--ink)" text-anchor="start">DIGIMEISTER</text></svg>
+      <svg class="dm-logo logo-mark" viewBox="0 0 520 250" focusable="false" aria-hidden="true"><rect class="ink" x="54" y="198" width="52" height="29" rx="8"/><rect class="ink" x="142" y="198" width="52" height="29" rx="8"/><rect class="ink" x="326" y="198" width="52" height="29" rx="8"/><rect class="ink" x="414" y="198" width="52" height="29" rx="8"/><path class="cab" d="M214.4 125.06C238.4 123.81 236 151.75 260 151.75C284 151.75 281.6 123.81 305.6 125.06" fill="none" stroke-width="20" stroke-linecap="round"/><g transform="rotate(-3 120 120)"><rect class="ink" x="20" y="30" width="200" height="180" rx="26"/><rect class="pap" x="50" y="50" width="140" height="76" rx="10"/><rect class="ink" x="90" y="73" width="18" height="30" rx="7"/><rect class="ink" x="144" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M72 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="148" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M214 116L214 144Q214 148 218 148A18 18 0 0 0 218 112Q214 112 214 116Z"/></g><g transform="rotate(3 400 120)"><rect class="ink" x="300" y="30" width="200" height="180" rx="26"/><rect class="pap" x="330" y="50" width="140" height="76" rx="10"/><rect class="ink" x="358" y="73" width="18" height="30" rx="7"/><rect class="ink" x="412" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M352 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="428" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M306 116L306 144Q306 148 302 148A18 18 0 0 1 302 112Q306 112 306 116Z"/></g><text x="556.0" y="176.0" font-family="Rubik, sans-serif" font-weight="800" font-size="142.86" letter-spacing="7.14" fill="var(--ink)" text-anchor="start">DIGIMEISTER</text></svg>
+    </a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#co-dev">Co-dev</a>
+      <a href="#games">Games</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-        <!-- ONE central tabbed window. Tabs sit above the content area and swap which
-             section is shown. Active tab visually merges with the panel below. -->
-        <div class="window panel-stage" id="panel-stage">
+<main id="main">
 
-            <div class="title-bar">
-                <span class="title-dot" aria-hidden="true"></span>
-                <div class="tab-strip" role="tablist">
-                    <div class="tab is-active" role="tab" data-panel="content-home">HOME</div>
-                    <div class="tab" role="tab" data-panel="content-about">ABOUT</div>
-                    <div class="tab" role="tab" data-panel="content-codev">CO-DEV</div>
-                    <div class="tab" role="tab" data-panel="content-games">GAMES</div>
-                    <div class="tab" role="tab" data-panel="content-team">TEAM</div>
-                </div>
-                <div class="title-controls" aria-hidden="true">
-                    <span class="ctrl-btn"></span>
-                    <span class="ctrl-btn"></span>
-                    <span class="ctrl-btn ctrl-btn--close"></span>
-                </div>
-            </div>
-
-            <div class="panel-area">
-
-                <div class="win-body is-visible" id="content-home">
-                    <div class="logo-wrap">
-                        <img src="logo.svg" alt="Digimeister" class="logo">
-                    </div>
-                    <p class="home-pitch">We make and port games<br>for PC, console and mobile,<br>with other studios and on our own.</p>
-                    <p class="home-pitch">Online is our focus.</p>
-                    <p class="home-place">Fukuoka, Japan</p>
-                    <div class="home-mail">
-                        <a href="mailto:hello@digimeister.co.jp">hello@digimeister.co.jp</a>
-                        <button class="copy-btn" data-copy="hello@digimeister.co.jp" aria-label="Copy email">Copy</button>
-                    </div>
-                    <div class="home-small">
-                        <a href="tel:+819064281601">+81 90 6428 1601</a>
-                        <a href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    </div>
-                </div>
-
-                <div class="win-body" id="content-about">
-                    <div class="about-text">
-                        <div class="pixel-art pixel-art--link" aria-hidden="true"></div>
-                        <p class="about-label"><span>▸ ABOUT DIGIMEISTER</span></p>
-                        <p>Digimeister is a game studio in Fukuoka, Japan, founded in 2022. We make and port games for PC, console and mobile, with other studios and on our own.</p>
-                        <p class="about-label"><span>▸ WHAT WE DO</span></p>
-                        <p>Co-dev and programming: porting, netcode and live systems. Since 2024 our focus has been online games, the multiplayer kind that only work because other players are in them.</p>
-                        <p class="about-label"><span>▸ WORK WITH US</span></p>
-                        <p>If your game needs another team to ship it, <a href="mailto:hello@digimeister.co.jp">get in touch</a>.</p>
-                    </div>
-                </div>
-
-                <div class="win-body" id="content-codev">
-                    <div class="about-text">
-                        <div class="pixel-art pixel-art--stanley" aria-hidden="true"></div>
-                        <p class="about-label"><span>▸ THE STANLEY PARABLE: ULTRA DELUXE</span><span class="label-meta">iOS · 2024</span></p>
-                        <p><span class="award-tag">App Store Editors' Choice</span></p>
-                        <p>We took it from PC and console to iPhone and iPad.</p>
-                        <p><a href="https://apps.apple.com/app/id6479513152" target="_blank" rel="noopener noreferrer">App Store</a></p>
-                    </div>
-                </div>
-
-                <div class="win-body" id="content-games">
-                    <div class="about-text">
-                        <div class="pixel-art pixel-art--moonrangers" aria-hidden="true"></div>
-                        <p class="about-label"><span>▸ MOONRANGERS</span><span class="label-meta">IN DEVELOPMENT</span></p>
-                        <p>The moon shattered and humanity went underground. You go out. A top-down survival game about hauling cargo and building roads other players use, while the wasteland tries to kill you.</p>
-                        <p><a href="https://playmoonrangers.com/" target="_blank" rel="noopener noreferrer">playmoonrangers.com</a></p>
-                    </div>
-                </div>
-
-                <div class="win-body" id="content-team">
-                    <div class="about-text">
-                        <div class="member">
-                            <img class="portrait" src="art/px-portrait.svg" width="54" height="54" alt="">
-                            <div class="member-text">
-                                <p class="about-label"><span>▸ JAN STROETMANN</span><span class="label-meta">FOUNDER</span></p>
-                                <p>Has shipped games for over ten years, including The Stanley Parable at Crows Crows Crows. Started Digimeister in 2022 to make multiplayer games.</p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <img class="portrait" src="art/px-portrait.svg" width="54" height="54" alt="">
-                            <div class="member-text">
-                                <p class="about-label"><span>▸ LUKE JONES</span><span class="label-meta">PROGRAMMER</span></p>
-                                <p>Works in Unity on network code and gameplay systems.</p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <img class="portrait" src="art/px-portrait.svg" width="54" height="54" alt="">
-                            <div class="member-text">
-                                <p class="about-label"><span>▸ REBECCA KUROIWA</span><span class="label-meta">CONCEPT ARTIST</span></p>
-                                <p>Designs and draws the characters and creatures.</p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <img class="portrait" src="art/px-portrait.svg" width="54" height="54" alt="">
-                            <div class="member-text">
-                                <p class="about-label"><span>▸ RIHO YAMASHITA</span><span class="label-meta">UI/UX DESIGNER</span></p>
-                                <p>Designs interfaces and builds them into the game.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <svg class="dm-logo hero__lockup" viewBox="-10 0 1577 250" overflow="visible" focusable="false" role="img" aria-label="Digimeister"><rect class="ink" x="54" y="198" width="52" height="29" rx="8"/><rect class="ink" x="142" y="198" width="52" height="29" rx="8"/><rect class="ink" x="326" y="198" width="52" height="29" rx="8"/><rect class="ink" x="414" y="198" width="52" height="29" rx="8"/><path class="cab" d="M214.4 125.06C238.4 123.81 236 151.75 260 151.75C284 151.75 281.6 123.81 305.6 125.06" fill="none" stroke-width="16" stroke-linecap="round"/><g transform="rotate(-3 120 120)"><rect class="ink" x="20" y="30" width="200" height="180" rx="26"/><rect class="pap" x="50" y="50" width="140" height="76" rx="10"/><rect class="ink" x="92" y="64" width="14" height="24" rx="5"/><rect class="ink" x="146" y="64" width="14" height="24" rx="5"/><path class="inks" d="M109 102v4a8 8 0 0 0 8 8h12a8 8 0 0 0 8-8v-4" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path class="pap paps" d="M72 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="4" stroke-linejoin="round"/><rect class="pap" x="148" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M214 116L214 144Q214 148 218 148A18 18 0 0 0 218 112Q214 112 214 116Z"/></g><g transform="rotate(3 400 120)"><rect class="ink" x="300" y="30" width="200" height="180" rx="26"/><rect class="pap" x="330" y="50" width="140" height="76" rx="10"/><rect class="ink" x="360" y="64" width="14" height="24" rx="5"/><rect class="ink" x="414" y="64" width="14" height="24" rx="5"/><path class="inks" d="M383 102v4a8 8 0 0 0 8 8h12a8 8 0 0 0 8-8v-4" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path class="pap paps" d="M352 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="4" stroke-linejoin="round"/><rect class="pap" x="428" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M306 116L306 144Q306 148 302 148A18 18 0 0 1 302 112Q306 112 306 116Z"/></g><text x="556.0" y="176.0" font-family="Rubik, sans-serif" font-weight="800" font-size="142.86" letter-spacing="4.29" fill="var(--ink)" text-anchor="start">DIGIMEISTER</text></svg>
+      <div class="hero__body">
+        <h1 class="hero__title" id="hero-title">We make and port games for PC, console and mobile, with other studios and on our own.</h1>
+        <div class="hero__aside">
+          <p class="hero__focus">Online is our focus.</p>
+          <p class="label">Fukuoka, Japan</p>
+          <div class="mail">
+            <a class="mail__address" href="mailto:hello@digimeister.co.jp">hello@digimeister.co.jp</a>
+            <button class="btn btn--quiet copy" type="button" data-copy="hello@digimeister.co.jp" aria-label="Copy email address">Copy</button>
+          </div>
         </div>
-
+      </div>
     </div>
+  </section>
 
-    <script>
-        // Eagerly fetch Source Sans 3 on initial load so switching to
-        // ABOUT/CO-DEV/GAMES/TEAM (the only tabs that use it) doesn't FOUT-flash.
-        if (document.fonts && document.fonts.load) {
-            document.fonts.load('400 15px "Source Sans 3"');
-            document.fonts.load('700 15px "Source Sans 3"');
-        }
+  <section class="section codev" id="co-dev" aria-labelledby="codev-title">
+    <div class="wrap grid">
+      <h2 class="section__title" id="codev-title">Co-dev</h2>
+      <div class="section__body">
+        <p class="lead">Co-dev and programming: porting, netcode and live systems.</p>
+        <p class="prose">Since 2024 our focus has been online games, the multiplayer kind that only work because other players are in them.</p>
 
-        var tabs     = document.querySelectorAll('.tab');
-        var contents = document.querySelectorAll('.panel-area .win-body');
+        <article class="project" aria-labelledby="stanley-title">
+          <header class="project__head">
+            <h3 class="project__title" id="stanley-title">The Stanley Parable: Ultra Deluxe</h3>
+            <p class="label">iOS, 2024</p>
+          </header>
 
-        function activateTab(tab) {
-            tabs.forEach(function (t)     { t.classList.remove('is-active'); });
-            contents.forEach(function (c) { c.classList.remove('is-visible'); });
-            tab.classList.add('is-active');
-            var content = document.getElementById(tab.dataset.panel);
-            if (content) {
-                content.classList.add('is-visible');
-                content.scrollTop = 0;
-            }
-        }
+          <div class="port" role="img" aria-label="Ported from PC and console to iPhone and iPad">
+            <div class="port__end port__end--from">
+              <span class="label">From</span>
+              <span class="port__platform">PC and console</span>
+            </div>
+            <span class="port__link" aria-hidden="true"></span>
+            <div class="port__end port__end--to dm-dark">
+              <span class="label">To</span>
+              <span class="port__platform">iPhone and iPad</span>
+            </div>
+          </div>
 
-        // Reset every panel's scroll on page open so reloads land at the top
-        contents.forEach(function (c) { c.scrollTop = 0; });
+          <div class="project__foot">
+            <p class="award">App Store Editors' Choice</p>
+            <p class="project__text">We took it from PC and console to iPhone and iPad.</p>
+            <a class="link" href="https://apps.apple.com/app/id6479513152" target="_blank" rel="noopener noreferrer">App Store</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                if (tab.classList.contains('is-active')) return;
-                activateTab(tab);
-            });
-        });
+  <section class="section games dm-dark" id="games" aria-labelledby="games-title">
+    <div class="wrap grid">
+      <h2 class="section__title" id="games-title">Games</h2>
+      <div class="section__body">
+        <article class="game" aria-labelledby="moonrangers-title">
+          <div class="game__info">
+            <div class="game__name">
+              <h3 class="game__title" id="moonrangers-title">Moonrangers</h3>
+              <p class="label">In development</p>
+            </div>
+            <div class="game__text">
+              <p class="prose">The moon shattered and humanity went underground. You go out. A top-down survival game about hauling cargo and building roads other players use, while the wasteland tries to kill you.</p>
+              <a class="link" href="https://playmoonrangers.com/" target="_blank" rel="noopener noreferrer">playmoonrangers.com</a>
+            </div>
+          </div>
+          <!-- Placeholder: replace this div with <img class="game__art" src="art/moonrangers.jpg" alt="…" width="1600" height="900"> -->
+          <div class="slot game__art" role="img" aria-label="Moonrangers key art (placeholder)">
+            <span class="slot__note">Moonrangers key art, 16:9</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        document.querySelectorAll('.copy-btn').forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                navigator.clipboard.writeText(btn.dataset.copy).then(function () {
-                    btn.textContent = 'Copied';
-                    setTimeout(function () { btn.textContent = 'Copy'; }, 1400);
-                });
-            });
-        });
-    </script>
+  <section class="section team" id="team" aria-labelledby="team-title">
+    <div class="wrap grid">
+      <h2 class="section__title" id="team-title">Team</h2>
+      <ul class="section__body people" role="list">
+        <li class="person">
+          <!-- Placeholder portrait: replace with <img class="person__portrait" src="team/jan.jpg" alt="" width="160" height="160"> -->
+          <span class="person__portrait slot" aria-hidden="true">JS</span>
+          <div class="person__text">
+            <h3 class="person__name">Jan Stroetmann</h3>
+            <p class="label">Founder</p>
+            <p class="person__bio">Has shipped games for over ten years, including The Stanley Parable at Crows Crows Crows. Started Digimeister in 2022 to make multiplayer games.</p>
+          </div>
+        </li>
+        <li class="person">
+          <span class="person__portrait slot" aria-hidden="true">LJ</span>
+          <div class="person__text">
+            <h3 class="person__name">Luke Jones</h3>
+            <p class="label">Programmer</p>
+            <p class="person__bio">Works in Unity on network code and gameplay systems.</p>
+          </div>
+        </li>
+        <li class="person">
+          <span class="person__portrait slot" aria-hidden="true">RK</span>
+          <div class="person__text">
+            <h3 class="person__name">Rebecca Kuroiwa</h3>
+            <p class="label">Concept artist</p>
+            <p class="person__bio">Designs and draws the characters and creatures.</p>
+          </div>
+        </li>
+        <li class="person">
+          <span class="person__portrait slot" aria-hidden="true">RY</span>
+          <div class="person__text">
+            <h3 class="person__name">Riho Yamashita</h3>
+            <p class="label">UI/UX designer</p>
+            <p class="person__bio">Designs interfaces and builds them into the game.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contact dm-on-signal" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 class="contact__title" id="contact-title">If your game needs another team to ship it, get in touch.</h2>
+      <div class="contact__mail">
+        <a class="contact__address" href="mailto:hello@digimeister.co.jp">hello@digimeister.co.jp</a>
+        <button class="btn btn--ink copy" type="button" data-copy="hello@digimeister.co.jp" aria-label="Copy email address">Copy</button>
+      </div>
+      <ul class="contact__more" role="list">
+        <li><a href="tel:+819064281601">+81 90 6428 1601</a></li>
+        <li><a href="http://www.linkedin.com/in/janstro" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer dm-dark">
+  <div class="wrap site-footer__row">
+    <a class="site-footer__logo" href="#top" aria-label="Back to top">
+      <svg class="dm-logo footer-lockup" viewBox="-10 0 1576 250" overflow="visible" focusable="false" aria-hidden="true"><rect class="ink" x="54" y="198" width="52" height="29" rx="8"/><rect class="ink" x="142" y="198" width="52" height="29" rx="8"/><rect class="ink" x="326" y="198" width="52" height="29" rx="8"/><rect class="ink" x="414" y="198" width="52" height="29" rx="8"/><path class="cab" d="M214.4 125.06C238.4 123.81 236 151.75 260 151.75C284 151.75 281.6 123.81 305.6 125.06" fill="none" stroke-width="20" stroke-linecap="round"/><g transform="rotate(-3 120 120)"><rect class="ink" x="20" y="30" width="200" height="180" rx="26"/><rect class="pap" x="50" y="50" width="140" height="76" rx="10"/><rect class="ink" x="90" y="73" width="18" height="30" rx="7"/><rect class="ink" x="144" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M72 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="148" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M214 116L214 144Q214 148 218 148A18 18 0 0 0 218 112Q214 112 214 116Z"/></g><g transform="rotate(3 400 120)"><rect class="ink" x="300" y="30" width="200" height="180" rx="26"/><rect class="pap" x="330" y="50" width="140" height="76" rx="10"/><rect class="ink" x="358" y="73" width="18" height="30" rx="7"/><rect class="ink" x="412" y="73" width="18" height="30" rx="7"/><path class="pap paps" d="M352 154h16v12h12v16h-12v12h-16v-12h-12v-16h12z" stroke-width="6" stroke-linejoin="round"/><rect class="pap" x="428" y="160" width="36" height="28" rx="8"/><path class="cabf" d="M306 116L306 144Q306 148 302 148A18 18 0 0 1 302 112Q306 112 306 116Z"/></g><text x="556.0" y="176.0" font-family="Rubik, sans-serif" font-weight="800" font-size="142.86" letter-spacing="7.14" fill="var(--ink)" text-anchor="start">DIGIMEISTER</text></svg>
+    </a>
+    <p class="site-footer__text">Digimeister is a game studio in Fukuoka, Japan, founded in 2022.</p>
+    <p class="site-footer__copy">&copy; 2026 Digimeister</p>
+  </div>
+</footer>
+
+<p class="sr-only" id="copy-status" aria-live="polite"></p>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Copy the email address. The button says "Copied" for a moment.
+  var status = document.getElementById('copy-status');
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var done = function () {
+        btn.textContent = 'Copied';
+        btn.classList.add('is-copied');
+        status.textContent = 'Email address copied';
+        clearTimeout(btn._t);
+        btn._t = setTimeout(function () {
+          btn.textContent = 'Copy';
+          btn.classList.remove('is-copied');
+          status.textContent = '';
+        }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () {});
+      }
+    });
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    document.documentElement.classList.add('no-io');
+    return;
+  }
+
+  // Header: the small logo comes in once the big hero logo has scrolled away.
+  var header = document.getElementById('site-header');
+  var heroLogo = document.querySelector('.hero__lockup');
+  new IntersectionObserver(function (entries) {
+    var gone = !entries[0].isIntersecting;
+    header.classList.toggle('is-scrolled', gone);
+  }, { rootMargin: '-72px 0px 0px 0px' }).observe(heroLogo);
+
+  // Nav: underline the section you are reading.
+  var links = {};
+  document.querySelectorAll('.site-nav a').forEach(function (a) {
+    links[a.getAttribute('href').slice(1)] = a;
+  });
+  var current = null;
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      if (current) current.removeAttribute('aria-current');
+      current = links[e.target.id] || null;
+      if (current) current.setAttribute('aria-current', 'location');
+    });
+  }, { rootMargin: '-45% 0px -54% 0px' });
+  ['top', 'co-dev', 'games', 'team', 'contact'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) spy.observe(el);
+  });
+  // On tall screens Contact never reaches the middle line, so mark it at the bottom of the page.
+  window.addEventListener('scroll', function () {
+    var atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    if (atEnd && current !== links.contact) {
+      if (current) current.removeAttribute('aria-current');
+      current = links.contact;
+      current.setAttribute('aria-current', 'location');
+    }
+  }, { passive: true });
+
+  // The port link: the bar joins the two ends once, when it comes into view.
+  var port = document.querySelector('.port');
+  if (port && !reduce) {
+    port.classList.add('is-waiting');
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        port.classList.remove('is-waiting');
+        port.classList.add('is-linked');
+        io.disconnect();
+      }
+    }, { threshold: 0.6 });
+    io.observe(port);
+  }
+})();
+</script>
 </body>
 </html>

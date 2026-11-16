@@ -1,0 +1,38 @@
+/* Digimeister brand tokens. Load the fonts with:
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;800&family=Inter:wght@400;500;600&display=swap"> */
+:root {
+  --dm-ink: #15171A;
+  --dm-paper: #F6F5F2;
+  --dm-signal: #FFC01E;
+  --dm-surface: #FBFAF8;
+  --dm-line: #DDDBD5;
+  --dm-muted: #6B6E73;
+  --dm-muted-on-dark: #A9ACB2;
+  --dm-signal-text: #8A6A12;   /* Signal as readable text on Paper */
+  --dm-port-blue: #4789FF;      /* optional, not in the logo */
+  --dm-port-blue-text: #2563D9;
+
+  --dm-font-display: "Rubik", system-ui, sans-serif;
+  --dm-font-text: "Inter", system-ui, sans-serif;
+
+  --dm-radius-button: 10px;
+  --dm-radius-card: 14px;
+
+  /* logo theming: the live SVGs and lockups read these three */
+  --ink: var(--dm-ink);
+  --paper: var(--dm-paper);
+  --cable: var(--dm-signal);
+}
+
+/* dark surfaces: swap ink and paper, the cable stays Signal */
+.dm-dark, [data-theme="dark"] {
+  --ink: #F6F5F2;
+  --paper: #15171A;
+}
+
+/* on a Signal field the cable turns Ink, screens take the field colour */
+.dm-on-signal {
+  --ink: #15171A;
+  --paper: #FFC01E;
+  --cable: #15171A;
+}
