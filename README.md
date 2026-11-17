@@ -10,7 +10,8 @@ The Digimeister studio site: one static page, no build step. `public/` is the si
   (video: H.264, 30 fps, no audio, CRF 28, faststart; stills: 1600 and 800 wide). They don't update with that site.
 - Stills are links to their large image; with JS they open in the `#viewer` dialog.
 - `public/media/stanley/`: five landscape iPhone screenshots of The Stanley Parable: Ultra Deluxe from its
-  App Store listing (1600 and 800 wide), shown as a slideshow on the screen of `phone.svg`, a drawn phone.
+  App Store listing (1600 and 800 wide), shown as a slideshow on the screen of `phone.svg`, a black phone shape.
+  They fade from one to the next every 4 seconds; the small pictures under the phone pick one.
   If you redraw the phone, keep its screen area or update the percentages on `.phone__screen` in `style.css`.
 
 ## Placeholders to replace

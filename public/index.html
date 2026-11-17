@@ -97,8 +97,9 @@
               <a class="link" href="https://apps.apple.com/app/id6479513152" target="_blank" rel="noopener noreferrer">View on the App Store</a>
             </div>
           </div>
-          <!-- Landscape screenshots of the iPhone version, from the App Store listing, in a drawn phone
-               (media/stanley/phone.svg). The screen scrolls sideways by itself; the script adds the buttons. -->
+          <!-- Landscape screenshots of the iPhone version, from the App Store listing, on a black phone shape
+               (media/stanley/phone.svg). With JS they fade from one to the next and the small pictures
+               pick one. Without JS the screen scrolls sideways. -->
           <div class="reel slideshow">
             <div class="phone">
               <div class="phone__screen" tabindex="0" role="group" aria-label="Screenshots of the iPhone version">
@@ -111,15 +112,14 @@
                 </ul>
               </div>
             </div>
-            <div class="slideshow__controls" hidden>
-              <button class="slideshow__btn" type="button" data-step="-1" aria-label="Previous screenshot">
-                <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M12.5 4 6.5 10l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <p class="slideshow__count" aria-live="polite"><span class="sr-only">Screenshot </span><span data-current>1</span> / 5</p>
-              <button class="slideshow__btn" type="button" data-step="1" aria-label="Next screenshot">
-                <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
+            <ul class="slideshow__thumbs" role="list" hidden>
+              <li><button class="slideshow__thumb" type="button" aria-label="Show screenshot 1 of 5"><img src="media/stanley/office-800.jpg" width="800" height="369" loading="lazy" decoding="async" alt=""></button></li>
+              <li><button class="slideshow__thumb" type="button" aria-label="Show screenshot 2 of 5"><img src="media/stanley/monitors-800.jpg" width="800" height="369" loading="lazy" decoding="async" alt=""></button></li>
+              <li><button class="slideshow__thumb" type="button" aria-label="Show screenshot 3 of 5"><img src="media/stanley/control-800.jpg" width="800" height="369" loading="lazy" decoding="async" alt=""></button></li>
+              <li><button class="slideshow__thumb" type="button" aria-label="Show screenshot 4 of 5"><img src="media/stanley/closet-800.jpg" width="800" height="369" loading="lazy" decoding="async" alt=""></button></li>
+              <li><button class="slideshow__thumb" type="button" aria-label="Show screenshot 5 of 5"><img src="media/stanley/arch-800.jpg" width="800" height="369" loading="lazy" decoding="async" alt=""></button></li>
+            </ul>
+          </div>
           </div>
         </article>
       </div>
@@ -284,27 +284,49 @@
     });
   });
 
-  // Slideshow: the screen is a sideways scroller with snap points, so swipe, trackpad and
-  // arrow keys work without this. The script adds the two buttons and the counter.
+  // Slideshow: the screenshots fade from one to the next every few seconds; the small pictures pick one.
+  // It waits while the pointer or the keyboard focus is on it, while it is off screen or the tab is hidden.
+  // Reduced motion: no autoplay.
   document.querySelectorAll('.slideshow').forEach(function (show) {
-    var track = show.querySelector('.phone__screen');
-    var controls = show.querySelector('.slideshow__controls');
-    var current = show.querySelector('[data-current]');
-    var n = track.querySelectorAll('.slide').length;
-    var index = function () { return Math.round(track.scrollLeft / track.clientWidth); };
-    controls.hidden = false;
-    controls.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-step]');
-      if (!btn) return;
-      var to = index() + Number(btn.getAttribute('data-step'));
-      var wrap = to < 0 || to >= n; // from the last one back to the first: jump, do not rewind
-      to = (to + n) % n;
-      track.scrollTo({ left: to * track.clientWidth, behavior: (reduce || wrap) ? 'auto' : 'smooth' });
+    var screen = show.querySelector('.phone__screen');
+    var slides = show.querySelectorAll('.slide');
+    var thumbs = show.querySelectorAll('.slideshow__thumb');
+    var at = 0, timer = null, hover = false, focus = false, seen = !('IntersectionObserver' in window);
+    var go = function (to) {
+      at = (to + slides.length) % slides.length;
+      slides.forEach(function (li, i) {
+        li.classList.toggle('is-active', i === at);
+        if (i === at) li.removeAttribute('aria-hidden'); else li.setAttribute('aria-hidden', 'true');
+      });
+      thumbs.forEach(function (t, i) {
+        if (i === at) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+      });
+    };
+    var plan = function () {
+      clearTimeout(timer);
+      if (reduce || hover || focus || !seen || document.hidden) return;
+      timer = setTimeout(function () { go(at + 1); plan(); }, 4000);
+    };
+    show.classList.add('is-fading');
+    screen.scrollLeft = 0;
+    screen.removeAttribute('tabindex');
+    show.querySelector('.slideshow__thumbs').hidden = false;
+    thumbs.forEach(function (t, i) {
+      t.addEventListener('click', function () { go(i); plan(); });
     });
-    track.addEventListener('scroll', function () {
-      var now = String(index() + 1);
-      if (current.textContent !== now) current.textContent = now;
-    }, { passive: true });
+    show.addEventListener('mouseenter', function () { hover = true; plan(); });
+    show.addEventListener('mouseleave', function () { hover = false; plan(); });
+    show.addEventListener('focusin', function () { focus = true; plan(); });
+    show.addEventListener('focusout', function () { focus = false; plan(); });
+    document.addEventListener('visibilitychange', plan);
+    if (!seen) {
+      new IntersectionObserver(function (entries) {
+        seen = entries[0].isIntersecting;
+        plan();
+      }, { threshold: 0.35 }).observe(screen);
+    }
+    go(0);
+    plan();
   });
 
   // Stills: open the large image in a dialog. Without <dialog> the link opens the file.

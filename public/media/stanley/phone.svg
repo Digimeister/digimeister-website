@@ -1,12 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1446 705">
-  <!-- A plain phone, lying on its side. The screen area (24,30 1398x645) is left to the page. -->
-  <g fill="#15171A">
-    <rect x="250" y="0" width="64" height="12" rx="4"/>
-    <rect x="352" y="0" width="112" height="12" rx="4"/>
-    <rect x="490" y="0" width="112" height="12" rx="4"/>
-    <rect x="420" y="693" width="180" height="12" rx="4"/>
-    <rect x="0" y="6" width="1446" height="693" rx="98"/>
-  </g>
-  <rect x="5" y="11" width="1436" height="683" rx="93" fill="none" stroke="#3A3E45" stroke-width="2"/>
-  <rect x="24" y="30" width="1398" height="645" rx="74" fill="#000"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1446 693">
+  <!-- The phone: one black shape. The screen area (24,24 1398x645) is left to the page. -->
+  <rect width="1446" height="693" rx="98"/>
 </svg>
