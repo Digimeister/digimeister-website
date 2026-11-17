@@ -8,6 +8,7 @@ The Digimeister studio site: one static page, no build step. `public/` is the si
 - Favicons, touch icon, manifest and share image sit at the root of `public/`, as `digimeister-brand/HANDOFF.md` asks.
 - `public/media/moonrangers/`: the gameplay video and stills, copied from playmoonrangers.com and re-encoded
   (video: H.264, 30 fps, no audio, CRF 28, faststart; stills: 1600 and 800 wide). They don't update with that site.
+- Stills are links to their large image; with JS they open in the `#viewer` dialog.
 - `public/media/stanley/`: iPhone screenshots of The Stanley Parable: Ultra Deluxe from its App Store listing
   (landscape at 1600 and 800 wide, portrait at 640 and 320 wide).
 
