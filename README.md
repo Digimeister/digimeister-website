@@ -9,8 +9,9 @@ The Digimeister studio site: one static page, no build step. `public/` is the si
 - `public/media/moonrangers/`: the gameplay video and stills, copied from playmoonrangers.com and re-encoded
   (video: H.264, 30 fps, no audio, CRF 28, faststart; stills: 1600 and 800 wide). They don't update with that site.
 - Stills are links to their large image; with JS they open in the `#viewer` dialog.
-- `public/media/stanley/`: iPhone screenshots of The Stanley Parable: Ultra Deluxe from its App Store listing
-  (landscape at 1600 and 800 wide, portrait at 640 and 320 wide).
+- `public/media/stanley/`: five landscape iPhone screenshots of The Stanley Parable: Ultra Deluxe from its
+  App Store listing (1600 and 800 wide), shown as a slideshow on the screen of `phone.svg`, a drawn phone.
+  If you redraw the phone, keep its screen area or update the percentages on `.phone__screen` in `style.css`.
 
 ## Placeholders to replace
 
