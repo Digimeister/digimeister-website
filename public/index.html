@@ -85,28 +85,30 @@
         <p class="lead">Co-dev and programming: porting, netcode and live systems.</p>
         <p class="prose">Since 2024 our focus has been online games, the multiplayer kind that only work because other players are in them.</p>
 
-        <article class="project" aria-labelledby="stanley-title">
-          <header class="project__head">
-            <h3 class="project__title" id="stanley-title">The Stanley Parable: Ultra Deluxe</h3>
-            <p class="label">iOS, 2024</p>
-          </header>
-
-          <div class="port" role="img" aria-label="Ported from PC and console to iPhone and iPad">
-            <div class="port__end port__end--from">
-              <span class="label">From</span>
-              <span class="port__platform">PC and console</span>
+        <article class="game game--codev" aria-labelledby="stanley-title">
+          <div class="game__info">
+            <div class="game__name">
+              <h3 class="game__title" id="stanley-title">The Stanley Parable: Ultra Deluxe</h3>
+              <p class="label">iOS, 2024</p>
             </div>
-            <span class="port__link" aria-hidden="true"></span>
-            <div class="port__end port__end--to dm-dark">
-              <span class="label">To</span>
-              <span class="port__platform">iPhone and iPad</span>
+            <div class="game__text">
+              <p class="award">App Store Editors' Choice</p>
+              <p class="prose">We took it from PC and console to iPhone and iPad.</p>
+              <a class="link" href="https://apps.apple.com/app/id6479513152" target="_blank" rel="noopener noreferrer">App Store</a>
             </div>
           </div>
-
-          <div class="project__foot">
-            <p class="award">App Store Editors' Choice</p>
-            <p class="project__text">We took it from PC and console to iPhone and iPad.</p>
-            <a class="link" href="https://apps.apple.com/app/id6479513152" target="_blank" rel="noopener noreferrer">App Store</a>
+          <!-- Screenshots of the iPhone version, from the App Store listing. Corners follow the iPhone screen. -->
+          <div class="reel reel--phone">
+            <div class="reel__stage reel__stage--phone">
+              <img class="reel__still" src="media/stanley/office-800.jpg" srcset="media/stanley/office-800.jpg 800w, media/stanley/office-1600.jpg 1600w" sizes="(max-width: 960px) 92vw, 880px" width="1600" height="738" loading="lazy" decoding="async" alt="An office floor with desks and numbered doors, with the touch controls on screen">
+            </div>
+            <ul class="reel__stills reel__stills--portrait" role="list">
+              <li><img src="media/stanley/desk-320.jpg" srcset="media/stanley/desk-320.jpg 320w, media/stanley/desk-640.jpg 640w" sizes="(max-width: 720px) 30vw, (max-width: 960px) 18vw, 160px" width="640" height="1388" loading="lazy" decoding="async" alt="Stanley's desk and computer, played in portrait"></li>
+              <li><img src="media/stanley/doors-320.jpg" srcset="media/stanley/doors-320.jpg 320w, media/stanley/doors-640.jpg 640w" sizes="(max-width: 720px) 30vw, (max-width: 960px) 18vw, 160px" width="640" height="1388" loading="lazy" decoding="async" alt="Two open doors at the end of an office, played in portrait"></li>
+              <li><img src="media/stanley/library-320.jpg" srcset="media/stanley/library-320.jpg 320w, media/stanley/library-640.jpg 640w" sizes="(max-width: 720px) 30vw, (max-width: 960px) 18vw, 160px" width="640" height="1388" loading="lazy" decoding="async" alt="A tall red room lined with bookshelves, played in portrait"></li>
+              <li><img src="media/stanley/hall-320.jpg" srcset="media/stanley/hall-320.jpg 320w, media/stanley/hall-640.jpg 640w" sizes="(max-width: 720px) 30vw, (max-width: 960px) 18vw, 160px" width="640" height="1388" loading="lazy" decoding="async" alt="A pink arched hall with a giant apple on a pedestal, played in portrait"></li>
+              <li><img src="media/stanley/walkway-320.jpg" srcset="media/stanley/walkway-320.jpg 320w, media/stanley/walkway-640.jpg 640w" sizes="(max-width: 720px) 30vw, (max-width: 960px) 18vw, 160px" width="640" height="1388" loading="lazy" decoding="async" alt="A walkway leading out of the dark into a sunny field, played in portrait"></li>
+            </ul>
           </div>
         </article>
       </div>
@@ -304,12 +306,13 @@
     }
   }, { passive: true });
 
-  // Moonrangers video: plays muted while on screen, pauses when scrolled away.
-  // Nothing is downloaded until it first comes into view (preload="none").
-  // Reduced motion: it waits for the play button. The button always wins.
-  var video = document.querySelector('.reel__video');
-  var toggle = document.querySelector('.reel__toggle');
-  if (video && toggle) {
+  // Reel videos: play muted while on screen, pause when scrolled away.
+  // Nothing is downloaded until a video first comes into view (preload="none").
+  // Reduced motion: they wait for the play button. The button always wins.
+  document.querySelectorAll('.reel__stage').forEach(function (stage) {
+    var video = stage.querySelector('video');
+    var toggle = stage.querySelector('.reel__toggle');
+    if (!video || !toggle) return;
     var userPaused = reduce;
     video.removeAttribute('controls');
     toggle.hidden = false;
@@ -332,21 +335,8 @@
       if (entries[0].isIntersecting) { if (!userPaused) start(); }
       else if (!video.paused) video.pause();
     }, { threshold: 0.35 }).observe(video);
-  }
+  });
 
-  // The port link: the bar joins the two ends once, when it comes into view.
-  var port = document.querySelector('.port');
-  if (port && !reduce) {
-    port.classList.add('is-waiting');
-    var io = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) {
-        port.classList.remove('is-waiting');
-        port.classList.add('is-linked');
-        io.disconnect();
-      }
-    }, { threshold: 0.6 });
-    io.observe(port);
-  }
 })();
 </script>
 </body>

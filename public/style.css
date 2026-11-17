@@ -382,77 +382,18 @@ a { color: inherit; }
 }
 .lead + .prose { margin-top: 14px; color: var(--fg-muted); }
 
-/* ---------- Co-dev: the port ---------- */
-.project { margin-top: clamp(48px, 6vw, 72px); }
+/* ---------- Co-dev ---------- */
+/* The project uses the same block as Moonrangers (.game), on Paper. */
+.game--codev { margin-top: clamp(56px, 7vw, 88px); }
+.game--codev .game__name { grid-column: 1 / span 5; }
+.game--codev .game__text { grid-column: 6 / span 4; }
+.game--codev .game__title {
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.game--codev .game__text .prose { color: var(--fg-muted); }
 
-.project__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 24px;
-  margin-bottom: 20px;
-}
-.project__title {
-  font-family: var(--dm-font-display);
-  font-weight: 800;
-  font-size: var(--fs-h3);
-  line-height: 1.2;
-  letter-spacing: -.01em;
-}
-
-.port {
-  --link-gap: clamp(40px, 6vw, 88px);
-  display: grid;
-  grid-template-columns: 1fr var(--link-gap) 1fr;
-  align-items: stretch;
-}
-
-.port__end {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 40px;
-  min-height: clamp(168px, 18vw, 216px);
-  padding: clamp(20px, 2.4vw, 32px);
-  border-radius: var(--radius-panel);
-  background: var(--bg);
-  color: var(--fg);
-}
-.port__end--from {
-  background: var(--dm-surface);
-  box-shadow: inset 0 0 0 1.5px var(--dm-line);
-}
-
-.port__platform {
-  font-family: var(--dm-font-display);
-  font-weight: 800;
-  font-size: clamp(26px, 3vw, 40px);
-  line-height: 1.02;
-  letter-spacing: -.02em;
-}
-
-/* The Signal bar that joins the two ends. A plain bar, never a cable or plug. */
-.port__link {
-  align-self: center;
-  height: 14px;
-  margin-inline: -1px;
-  background: var(--dm-signal);
-  transform-origin: left center;
-}
-.port.is-waiting .port__link { transform: scaleX(0); }
-.port.is-linked .port__link {
-  transform: scaleX(1);
-  transition: transform .7s .15s var(--ease-out);
-}
-
-.project__foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 24px;
-  margin-top: 24px;
-}
 .award {
   display: inline-block;
   padding: 6px 10px 5px;
@@ -463,8 +404,6 @@ a { color: inherit; }
   font-weight: 600;
   line-height: 1.3;
 }
-.project__text { color: var(--fg-muted); }
-.project__foot .link { margin-left: auto; }
 
 /* ---------- Games ---------- */
 .games .section__title { color: var(--dm-paper); }
@@ -534,6 +473,30 @@ a { color: inherit; }
   background: rgba(246, 245, 242, .04);
 }
 
+/* iPhone screenshots: corners follow the iPhone screen (about 12.8% of its short side),
+   so the shape itself is the mobile hint. No device frame. */
+.reel--phone { container-type: inline-size; }
+.reel__stage--phone {
+  aspect-ratio: auto;
+  border-radius: 28px;
+  border-radius: 5.9cqi;
+  background: var(--dm-ink);
+  box-shadow: none;
+}
+.reel__still {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.reel__stills--portrait { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.reel__stills--portrait li { container-type: inline-size; }
+.reel__stills--portrait img {
+  aspect-ratio: 640 / 1388;
+  border-radius: 20px;
+  border-radius: 12.8cqi;
+  background: var(--dm-surface);
+}
+
 .game__info {
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
@@ -560,7 +523,7 @@ a { color: inherit; }
   gap: 16px;
   justify-items: start;
 }
-.game__text .prose { color: rgba(246, 245, 242, .86); }
+.dm-dark .game__text .prose { color: rgba(246, 245, 242, .86); }
 
 /* ---------- Team ---------- */
 .people {
@@ -699,27 +662,14 @@ a { color: inherit; }
   .logo-mark { display: block; height: 28px; }
   .site-nav { gap: 18px; }
 
-  .port {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 40px auto;
-  }
-  .port__end { min-height: 0; gap: 28px; }
-  .port__link {
-    justify-self: center;
-    align-self: stretch;
-    width: 14px;
-    height: auto;
-    margin: -1px 0;
-    transform-origin: center top;
-  }
-  .port.is-waiting .port__link { transform: scaleY(0); }
-  .port.is-linked .port__link { transform: scaleY(1); }
-  .project__foot .link { margin-left: 0; }
 
   .section__title { font-size: 28px; margin-bottom: 32px; }
-  .game__name, .game__text { grid-column: 1 / -1; }
+  .game__name, .game__text,
+  .game--codev .game__name, .game--codev .game__text { grid-column: 1 / -1; }
   .reel__stills { gap: 8px; margin-top: 8px; }
-  .reel__stills img { border-radius: 8px; }
+  .reel__stills:not(.reel__stills--portrait) img { border-radius: 8px; }
+  .reel__stills--portrait { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .reel__stills--portrait li:nth-child(n+4) { display: none; }
 
   .people { grid-template-columns: 1fr; }
   .person { grid-template-columns: 56px 1fr; gap: 16px; }
