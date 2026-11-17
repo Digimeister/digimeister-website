@@ -518,6 +518,15 @@ a { color: inherit; }
 }
 .dm-dark .game__text .prose { color: rgba(246, 245, 242, .86); }
 
+/* Moonrangers status tag: the game's own HUD green (nudged toward cyan), Ink text 8.7:1 */
+.game__status {
+  justify-self: start;
+  padding: 5px 8px 4px 10px; /* the right side is shorter by the .22em tracking after the last letter */
+  border-radius: var(--radius-small);
+  background: #34CC9A;
+  color: var(--dm-ink);
+}
+
 /* ---------- Team ---------- */
 .people {
   display: grid;
